@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navigation from '../../Components/Navigation/Navigation';
+import Header from '../../Components/Header/Header';
 import Slider from '../../Components/Slider/Slider';
 import Menu from '../../Components/Menu/Menu';
 import Benefits from '../../Components/Benefits/Benefits';
@@ -13,7 +13,7 @@ class Home extends Component {
     render() {
         return (
             <div className={ styles.Home }>
-            <Navigation />
+            <Header />
             <Slider />
             <Menu />
             <Benefits />
