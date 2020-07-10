@@ -1,3 +1,7 @@
 .Menu {
-    background: rgba(255, 10, 10, .5)
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
 }

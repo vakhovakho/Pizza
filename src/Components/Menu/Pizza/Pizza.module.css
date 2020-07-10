@@ -1,0 +1,61 @@
+.Pizza {
+    border: 1px solid;
+    border-color: rgb(128,128,128,0.5);
+    padding: 30px 30px;
+    margin-bottom: 20px;
+}
+
+
+.Pizza img {
+    width: 250px;
+}
+
+.ProductName {
+    font-weight: bold;
+}
+
+.ProductDescription {
+    color: grey;
+    width: 250px;
+    height: 100px;
+    overflow: hidden;
+    white-space: normal;
+    /* Need a changes */
+}
+
+.ProductSizes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.FirstSize {
+    width: 70px;
+    height: 30px;
+    border: 1px solid gold;
+    background-color: gold;
+    border-radius: 30px;
+    display: inline-block;
+    line-height: 0px;
+    text-align: center;
+}
+
+.ProductPrice {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.ProductFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.GetInBag {
+    vertical-align: text-bottom;
+    display: inline-block;
+    /* Need a changes */
+}
+
+.GetInBag img {
+    width: 25px;
+}

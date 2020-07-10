@@ -11,12 +11,12 @@ const Header = () => {
                         <p>From 10:00 till 22:00</p>
                     </div>
                     <div className={ styles.Phone }>
-                        <img src="/images/icons/phone-icon.png" alt="phone icon"></img>
+                        <img src="/images/icons/phone-icon.png" alt="Phone icon"></img>
                     </div>
                 </div>
                 <div className={ styles.Address }>
                     <div className={ styles.Pin }>
-                        <img src="/images/icons/pin-icon.png" alt="pin icon"></img>
+                        <img src="/images/icons/pin-icon.png" alt="Pin icon"></img>
                     </div>
                     <div className={ styles.Location }>
                         <p>London</p>
@@ -24,7 +24,7 @@ const Header = () => {
                     </div>
                 </div>
                 <div className={ styles.NavLogo}>
-                    <img src="/images/icons/pizza-icon.png" alt="phone icon"></img>
+                    <img src="/images/icons/pizza-icon.png" alt="Pizza icon"></img>
                 </div>
                 <div className={ styles.Orders }>
                     <div className={ styles.Registration }>
@@ -34,7 +34,7 @@ const Header = () => {
                 </div>
                 <div className={ styles.Cart}>
                     <div className={ styles.CartIcon }>
-                        <img src="/images/icons/cart-icon.png" alt="phone icon"></img>
+                        <img src="/images/icons/shoppingbag-icon.png" alt="shopping bag icon"></img>
                     </div>
                     <div className={ styles.CartCounter }>
                         <p>00000</p>
