@@ -5,7 +5,8 @@
     background-color: rgba(159, 219, 235, 0.5);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    height: 300px;
 }
 
 .Company img {
