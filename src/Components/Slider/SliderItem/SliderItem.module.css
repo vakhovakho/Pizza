@@ -1,0 +1,8 @@
+.SliderItem {
+    text-align: center;
+}
+
+.SliderItem img {
+    display: inline-block !important;
+    height: 500px;
+}

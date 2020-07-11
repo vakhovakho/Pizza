@@ -1,8 +1,35 @@
 import React from 'react';
+import SlickCarousel from "react-slick";
+import SliderItem from './SliderItem/SliderItem';
+
 import styles from './Slider.module.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Slider = () => {
-    return (<p className={ styles.Slider }> Slider </p>);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false,
+        className: styles.Carousel
+    };
+    return (
+        <div className={ styles.Slider }>
+            <SlickCarousel {...settings}>
+                <SliderItem image="/images/photos/pizza-1.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/pizza-2.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/pizza-3.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/pizza-4.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/pizza-5.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/pizza-6.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/pizza-7.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/pizza-8.jpg" alt="pizza picture" />
+            </SlickCarousel>
+        </div>
+    );
 }
 
 export default Slider;
