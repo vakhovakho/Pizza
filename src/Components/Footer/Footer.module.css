@@ -7,6 +7,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     height: 300px;
+    align-items: center;
 }
 
 .Company img {
