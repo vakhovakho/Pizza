@@ -1,3 +1,9 @@
 .Benefits {
-    background-color: rgba(50, 150, 200, .5);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 86%;
+    margin: 15px auto;
+    background-color: rgba(232, 236, 241, 1);
+    padding: 20px 0;
 }
