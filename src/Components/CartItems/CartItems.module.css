@@ -1,0 +1,5 @@
+.CartItems {
+    width: calc(100% - 400px);
+    margin-top: 50px;
+    margin: 50px auto;
+}

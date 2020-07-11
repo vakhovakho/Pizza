@@ -13,11 +13,11 @@ class Home extends Component {
     render() {
         return (
             <div className={ styles.Home }>
-            <Header />
-            <Slider />
-            <Menu />
-            <Benefits />
-            <Footer />
+                <Header />
+                <Slider />
+                <Menu />
+                <Benefits />
+                <Footer />
             </div>
         )
     }
