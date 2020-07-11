@@ -1,3 +1,68 @@
 .Footer {
-    background-color: rgba(200, 200, 200, .5);
+    margin-top: 10px;
+    width: 86%;
+    margin: 0 auto;
+    background-color: rgba(159, 219, 235, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Company img {
+    width: 100px;
+    display: inline-block;
+}
+
+.CompanyInfo {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+}
+
+.CompanyInfo p {
+    color: grey;
+}
+
+.CompanyInfo p:first-child {
+    font-weight: bold;
+    color: black;
+}
+
+.CompanyRights {
+    width: 230px;
+}
+
+.CompanyRights span {
+    font-weight: bold;
+    color: black;
+}
+
+.CompanyRights p {
+    color: grey;
+}
+
+.PhoneNumber p:first-child {
+    font-weight: bold;
+    color: black;
+}
+
+.PhoneNumber span {
+    color: gold;
+}
+
+.PhoneNumber p {
+    color: grey;
+}
+
+.CompanyAddress {
+    color: grey;
+}
+
+.SocialNetwork img {
+    width: 50px;
+}
+
+.SocialNetwork img:last-child {
+    width: 60px;
+    vertical-align: super;
 }
