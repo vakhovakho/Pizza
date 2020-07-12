@@ -6,7 +6,7 @@ const BenefitItem = ( props: any) => {
         <div className={ styles.BenefitItem}>
             <div className={ styles.BenefitIcons}>
                 <img src={ props.image } alt="rocket icon"></img>
-                <img src="/images/icons/wave-icon.png" alt="wave icon"></img>
+                <img src="/images/icons/wave.png" alt="wave icon"></img>
             </div>
             <div className={ styles.BenefitsOffer}>
                 <p> { props.title } </p>

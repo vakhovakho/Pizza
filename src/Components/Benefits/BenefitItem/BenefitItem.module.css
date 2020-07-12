@@ -3,12 +3,16 @@
 }
 
 .BenefitIcons img {
-    width: 80px;
+    width: 70px;
+    margin-left: 20px;
+    margin-top: 1px;
 }
 
 .BenefitIcons img:first-child {
-    width: 50px;
+    width: 30px;
 }
+
+
 
 .BenefitsOffer p {
     color: grey;
