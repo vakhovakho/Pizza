@@ -1,0 +1,28 @@
+.CartSummary {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(243, 241, 239, 0.5);
+}
+
+.OrderPrice {
+    color: grey;
+}
+
+.OrderPrice p:last-child{
+    font-weight: bold;
+    color: black;
+}
+
+.OrderCheckOut {
+    padding: 10px 35px;
+    background-color: gold;
+    border-radius: 25px;
+}
+
+.OrderCheckOut button {
+    background-color: transparent;
+    border-color: transparent;
+}

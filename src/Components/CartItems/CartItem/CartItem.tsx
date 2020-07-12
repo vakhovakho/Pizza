@@ -7,7 +7,7 @@ const CartItem = (props: any) => {
             <div className={ styles.CartItemLeft}>
                 <div className={ styles.PizzaInfo }>
                     <img src={ props.image } 
-                    alt="pizza photo"/>
+                    alt="pizza"/>
                 </div>
                 <div className={ styles.PizzaName}>
                     <p> { props.title } </p>
@@ -30,5 +30,6 @@ const CartItem = (props: any) => {
         </div>
     );
 }
+
 
 export default CartItem;
