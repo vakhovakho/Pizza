@@ -36,11 +36,16 @@
 .PhoneNumber p:first-child {
     font-weight: bold;
     color: black;
-    size: 30px;
+    font-size: 18px;
 }
 
 .PhoneNumber span {
     color: gold;
+    font-size: 18px;
+}
+
+.PhoneNumber p:last-child {
+    font-size: 16px;
 }
 
 .Phone {
@@ -60,20 +65,22 @@
 }
 
 .Pin img {
-    width: 25px;
+    width: 14px;
 }
 
 .Location p {
     color: grey;
+    font-size: 16px;
 }
 
 .Location p:first-child {
     font-weight: bold;
     color: black;
+    font-size: 18px;
 }
 
 .NavLogo img {
-    width: 100px;
+    width: 110px;
 }
 
 .Orders a:first-child {
@@ -82,11 +89,13 @@
     color: gold;
     font-weight: bold;
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .Orders a:last-child {
     color: grey;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .CartIcon {
@@ -94,14 +103,16 @@
 }
 
 .CartIcon img {
-    width: 25px;
+    width: 18px;
 }
 
 .CartCounter p {
     color: gold;
+    font-size: 16px;
 }
 
 .CartCounter p:first-child {
     color: black;
     font-weight: bold;
+    font-size: 18px;
 }
