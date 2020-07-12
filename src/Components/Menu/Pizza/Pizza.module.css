@@ -20,7 +20,6 @@
     height: 100px;
     overflow: hidden;
     white-space: normal;
-    /* Need a changes */
 }
 
 .ProductSizes {
@@ -56,9 +55,9 @@
 .GetInBag {
     vertical-align: text-bottom;
     display: inline-block;
-    /* Need a changes */
+
 }
 
 .GetInBag img {
-    width: 25px;
+    width: 15px;
 }
