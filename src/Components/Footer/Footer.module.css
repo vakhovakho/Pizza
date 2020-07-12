@@ -60,8 +60,36 @@
     color: grey;
 }
 
-.SocialNetwork img {
-    width: 50px;
+.SocialNetwork {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.SocialNetwork div:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: icon-font;
+    color: white;
+    background-color: #385898;
+}
+
+.SocialNetwork div:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: icon-font;
+    color: white;
+    background-color: #8134af;
 }
 
 .SocialNetwork img:last-child {

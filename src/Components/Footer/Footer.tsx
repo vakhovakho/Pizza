@@ -5,7 +5,7 @@ const Footer = () => {
     return (
     <div className={ styles.Footer }>  
         <div className={ styles.Company}>
-            <img src="/images/icons/pizza-icon.png" alt="pizza icon"></img>
+            <img src="/images/icons/pizza-logo.png" alt="pizza icon"></img>
             <div className={ styles.CompanyInfo}>
                 <p>Company Name</p>
                 <p>With delivery</p>
@@ -22,9 +22,8 @@ const Footer = () => {
                 <p>From 10:00 till 22:00</p>
             </div>
             <div className={ styles.SocialNetwork}>
-                <img src="/images/icons/fb-icon.png" alt="facebook icon"></img>
-                <img src="/images/icons/insta-icon.png" alt="instagram icon"></img>
-                <img src="/images/icons/linkedin-icon.png" alt="linkedin icon"></img>
+                <div>F</div>
+                <div>i</div>
             </div>
             <div className={ styles.CompanyAddress}>
                 <p>London</p>
