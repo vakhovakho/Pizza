@@ -19,14 +19,8 @@ const Slider = () => {
     return (
         <div className={ styles.Slider }>
             <SlickCarousel {...settings}>
-                <SliderItem image="/images/photos/pizza-1.jpg" alt="pizza picture" />
-                <SliderItem image="/images/photos/pizza-2.jpg" alt="pizza picture" />
-                <SliderItem image="/images/photos/pizza-3.jpg" alt="pizza picture" />
-                <SliderItem image="/images/photos/pizza-4.jpg" alt="pizza picture" />
-                <SliderItem image="/images/photos/pizza-5.jpg" alt="pizza picture" />
-                <SliderItem image="/images/photos/pizza-6.jpg" alt="pizza picture" />
-                <SliderItem image="/images/photos/pizza-7.jpg" alt="pizza picture" />
-                <SliderItem image="/images/photos/pizza-8.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/banner-1.jpg" alt="pizza picture" />
+                <SliderItem image="/images/photos/banner-2.jpg" alt="pizza picture" />
             </SlickCarousel>
         </div>
     );
