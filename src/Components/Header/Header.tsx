@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Header.module.css';
 import CartHeader from '../../Core/Contracts/CartHeader';
+import { Link } from 'react-router-dom';
 
 const Header = (props: {cart: CartHeader}) => {
     return (
@@ -25,7 +26,9 @@ const Header = (props: {cart: CartHeader}) => {
                     </div>
                 </div>
                 <div className={ styles.NavLogo}>
-                    <img src="/images/icons/pizza-logo.png" alt="Pizza icon"></img>
+                    <Link to="/" className={ styles.goToCart }>
+                        <img src="/images/icons/pizza-logo.png" alt="Pizza icon"></img>
+                    </Link>
                 </div>
                 <div className={ styles.Orders }>
                     <div className={ styles.Registration }>
@@ -39,7 +42,7 @@ const Header = (props: {cart: CartHeader}) => {
                     </div>
                     <div className={ styles.CartCounter }>
                         <p>{ props.cart.total }$</p>
-                        <p>In the cart</p>
+                        <Link to="/cart" className={ styles.goToCart }>In the cart</Link>
                     </div>
                 </div>
             </div>

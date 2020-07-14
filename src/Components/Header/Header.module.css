@@ -116,3 +116,10 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+.goToCart {
+    cursor: pointer;
+    text-decoration: none;
+    color: gold;
+    font-size: 16px;
+}
