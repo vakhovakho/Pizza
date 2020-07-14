@@ -8,11 +8,10 @@ import styles from './Cart.module.css';
 
 
 class Cart extends Component {
-
     render() {
         return (
             <div className={ styles.Cart }>
-                <Header />
+                {/* <Header cart={ this.state.cart }/> */}
                 <CartItems />
                 <CartOrderDetails />
                 <Footer />

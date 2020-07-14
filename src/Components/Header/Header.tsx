@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Header.module.css';
+import CartHeader from '../../Core/Contracts/CartHeader';
 
-const Header = () => {
+const Header = (props: {cart: CartHeader}) => {
     return (
         <div className={ styles.Header }>
             <div className={ styles.HeaderNav }>
@@ -37,7 +38,7 @@ const Header = () => {
                         <img src="/images/icons/cart.png" alt="shopping bag icon"></img>
                     </div>
                     <div className={ styles.CartCounter }>
-                        <p>00000</p>
+                        <p>{ props.cart.total }$</p>
                         <p>In the cart</p>
                     </div>
                 </div>

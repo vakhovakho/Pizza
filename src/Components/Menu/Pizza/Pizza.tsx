@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Pizza.module.css';
 import Product from '../../../Core/Contracts/Product';
 
-const Pizza = (props: {product: Product, sizeSelected: Function}) => {
+const Pizza = (props: {product: Product, addToCartClicked: Function, sizeSelected: Function}) => {
     return (
         <div className={ styles.Pizza }> 
             <img src={ props.product.image } alt="pizza pic" />
@@ -33,7 +33,7 @@ const Pizza = (props: {product: Product, sizeSelected: Function}) => {
                 <div className={ styles.ProductPrice }>
                     <p>{ props.product.prices[props.product.selectedSize] }$</p>
                 </div>
-                <div className={ styles.GetInBag }>
+                <div className={ styles.GetInBag } onClick={ () => props.addToCartClicked(props.product.id) }>
                     <img src="/images/icons/cart.png" alt="shopping bag icon"></img>
                 </div>
             </div>

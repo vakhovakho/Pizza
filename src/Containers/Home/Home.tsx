@@ -10,7 +10,8 @@ import styles from './Home.module.css';
 import CartHeader from '../../Core/Contracts/CartHeader';
 
 interface IState {
-    products: Array<Product>
+    products: Array<Product>, 
+    cart: CartHeader
 };
 
 
@@ -90,9 +91,44 @@ class Home extends Component {
                 selectedSize: 'medium',
                 prices: {small: 10, medium: 20, large: 30}
             }
-        ]
+        ],
+        cart: {
+            products: [],
+            total: 0
+        }
     }
 
+
+    addToCartHandler = (id: number) =>{
+        const products = [...this.state.products];
+        const index = products.findIndex(p => p.id === id);
+        
+        if(index === -1) {
+            return;
+        } 
+
+        let total = this.state.cart.total;
+        total +=  products[index].prices[products[index].selectedSize];
+
+        const cartProducts = [...this.state.cart.products];
+        const cartProductIndex = cartProducts.findIndex(p => p.id === id && p.size === products[index].selectedSize);
+
+        if(cartProductIndex > -1) {
+            cartProducts[cartProductIndex] = {...cartProducts[cartProductIndex], count: cartProducts[cartProductIndex].count + 1};
+        } else {
+            cartProducts.push({
+                id: products[index].id,
+                size: products[index].selectedSize,
+                count: 1
+            });
+        }
+
+        const cart = {...this.state.cart};
+        cart.products = cartProducts;
+        cart.total = total;
+        this.setState({cart});
+        
+    }
 
     selectSizeHandler = (id: number, size: string) => {
         const products = [...this.state.products];
@@ -107,10 +143,11 @@ class Home extends Component {
     render() {
         return (
             <div className={ styles.Home }>
-                <Header />
+                <Header cart={ this.state.cart } />
                 <Slider />
                 <Menu 
                     products={ this.state.products }
+                    addToCart={ this.addToCartHandler }
                     selectSize={ this.selectSizeHandler }
                 />
                 <Benefits />
