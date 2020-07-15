@@ -83,18 +83,23 @@
     width: 110px;
 }
 
-.Orders a:first-child {
-    display: block;
+.Orders button {
     text-decoration: none;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.Orders button:first-child {
+    display: block;
     color: gold;
     font-weight: bold;
     margin-bottom: 10px;
     font-size: 18px;
 }
 
-.Orders a:last-child {
+.Orders button:last-child {
     color: grey;
-    text-decoration: none;
     font-size: 16px;
 }
 

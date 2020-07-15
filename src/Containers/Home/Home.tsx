@@ -8,11 +8,14 @@ import Product from '../../Core/Contracts/Product';
 
 import styles from './Home.module.css';
 import CartHeader from '../../Core/Contracts/CartHeader';
+import Modal from '../../Components/UI/Modal/Modal';
+import Register from '../../Components/Register/Register';
 
 interface IState {
     products: Array<Product>, 
     cart: CartHeader,
-    addingToCart: number
+    addingToCart: number,
+    registerMode: boolean
 };
 
 
@@ -97,7 +100,8 @@ class Home extends Component {
             products: [],
             total: 0
         },
-        addingToCart: 0
+        addingToCart: 0,
+        registerMode: false
     }
 
 
@@ -148,10 +152,21 @@ class Home extends Component {
         
     }
 
+    cancelRegisterModeHandler = () => {
+        this.setState({registerMode: false});
+    }
+
+    startRegistrationMode = () => {
+        this.setState({registerMode: true});
+    }
+
     render() {
         return (
             <div className={ styles.Home }>
-                <Header cart={ this.state.cart } />
+                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegisterModeHandler }>
+                    <Register />
+                </Modal>
+                <Header cart={ this.state.cart } registerClicked={ this.startRegistrationMode } />
                 <Slider />
                 <Menu 
                     products={ this.state.products }

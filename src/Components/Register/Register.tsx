@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Register.module.css';
 import Input from '../UI/Form/Input/Input';
+import Button from '../UI/Form/Button/Button';
 
 
 const Register = ( props: any) => {
@@ -18,6 +19,7 @@ const Register = ( props: any) => {
                 <Input type="text" id="password" name="password" caption="Type your password" value="" required/>
                 <Input type="text" id="password_confirmation" name="password_cpnfirmation" caption="Repeat your password" value="" required/>
             </div>
+            <Button> Register </Button>
         </div>
     );
 }

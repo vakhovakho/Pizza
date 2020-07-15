@@ -7,11 +7,14 @@ import Product from '../../Core/Contracts/Product';
 import CartHeader from '../../Core/Contracts/CartHeader';
 
 import styles from './Cart.module.css';
+import Modal from '../../Components/UI/Modal/Modal';
+import Register from '../../Components/Register/Register';
 
 interface IState {
     products: Array<Product>, 
     cartHeader: CartHeader,
-    orderConfirmed: boolean
+    orderConfirmed: boolean,
+    registerMode: boolean
 };
 
 class Cart extends Component {
@@ -56,7 +59,8 @@ class Cart extends Component {
                 count: 1
             }
         ],
-        orderConfirmed: false   
+        orderConfirmed: false,
+        registerMode: false   
     };
 
     addToCartHandler = (id: number) =>{
@@ -121,10 +125,21 @@ class Cart extends Component {
         this.setState({orderConfirmed: true});
     }
 
+    cancelRegisterModeHandler = () => {
+        this.setState({registerMode: false});
+    }
+
+    startRegistrationMode = () => {
+        this.setState({registerMode: true});
+    }
+
     render() {
         return (
             <div className={ styles.Cart }>
-                <Header cart={ this.state.cartHeader }/>
+                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegisterModeHandler }>
+                    <Register />
+                </Modal>
+                <Header cart={ this.state.cartHeader }  registerClicked={ this.startRegistrationMode } />
                 <div className={ styles.CartBody }>
                     <CartItems 
                         products={ this.state.products }
