@@ -11,6 +11,7 @@ import CartHeader from '../../Core/Contracts/CartHeader';
 import Modal from '../../Components/UI/Modal/Modal';
 import Register from '../../Components/Register/Register';
 import Login from '../../Components/Login/Login';
+import ContactDetails from '../../Core/Contracts/ContactDetails';
 
 interface IState {
     products: Array<Product>, 
@@ -18,6 +19,7 @@ interface IState {
     addingToCart: number,
     registerMode: boolean,
     loginMode: boolean,
+    registerData: ContactDetails
 };
 
 
@@ -102,6 +104,14 @@ class Home extends Component {
             products: [],
             total: 0
         },
+        registerData: {
+            name: "",
+            number: "",
+            email: "",
+            address: "",
+            password: "",
+            password_confirmation: ""
+        },
         addingToCart: 0,
         registerMode: false,
         loginMode: false,
@@ -171,16 +181,32 @@ class Home extends Component {
         this.setState({loginMode: false});
     }
 
+    registrationInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const registerData = {...this.state.registerData};
+        const name = event.target.name as keyof ContactDetails;
+
+        if(name in registerData) {
+            registerData[name] = event.target.value;
+
+            this.setState({ registerData });
+        }
+        
+    }
+
     render() {
         return (
             <div className={ styles.Home }>
                 <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegistrationModeHandler }>
-                    <Register />
+                    <Register registerData={ this.state.registerData } inputChanged={ this.registrationInputChangeHandler } />
                 </Modal>
                 <Modal show={ this.state.loginMode } modalClosed={ this.cancelLoginModeHandler }>
                     <Login />
                 </Modal>
-                <Header cart={ this.state.cart } registerClicked={ this.startRegistrationModeHandler } loginClicked={ this.startLoginModeHandler } />
+                <Header 
+                    cart={ this.state.cart } 
+                    registerClicked={ this.startRegistrationModeHandler } 
+                    loginClicked={ this.startLoginModeHandler } 
+                />
                 <Slider />
                 <Menu 
                     products={ this.state.products }

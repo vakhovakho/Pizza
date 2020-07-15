@@ -5,6 +5,6 @@ export default interface ContactDetails {
     email: string,
     comment?: string,
     password?: string,
-    passwordConfirmation?: string,
+    password_confirmation?: string,
 }
 

@@ -20,7 +20,8 @@ interface IState {
     orderConfirmed: boolean,
     registerMode: boolean,
     loginMode: boolean,
-    contactDetails: ContactDetails
+    contactDetails: ContactDetails,
+    registerData: ContactDetails
 };
 
 class Cart extends Component {
@@ -74,6 +75,14 @@ class Cart extends Component {
             address: "",
             email: "",
             comment: ""
+        },
+        registerData: {
+            name: "",
+            number: "",
+            email: "",
+            address: "",
+            password: "",
+            password_confirmation: ""
         }   
     };
 
@@ -199,6 +208,18 @@ class Cart extends Component {
         
     }
 
+    registrationInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const registerData = {...this.state.registerData};
+        const name = event.target.name as keyof ContactDetails;
+
+        if(name in registerData) {
+            registerData[name] = event.target.value;
+
+            this.setState({ registerData });
+        }
+        
+    }
+
     render() {
 
         let cartItems = (
@@ -227,7 +248,7 @@ class Cart extends Component {
         return (
             <div className={ styles.Cart }>
                 <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegistrationModeHandler }>
-                    <Register />
+                    <Register registerData={ this.state.registerData } inputChanged={ this.registrationInputChangeHandler } />
                 </Modal>
                 <Modal show={ this.state.loginMode } modalClosed={ this.cancelLoginModeHandler }>
                     <Login />
