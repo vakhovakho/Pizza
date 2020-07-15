@@ -1,0 +1,40 @@
+.MyOrder {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.MyOrderHead {
+    text-align: center;
+}
+
+.OrderTitle {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.OrderButtons button:first-child {
+    color: white;
+    background-color: #fe8b0d;
+    padding: 5px 20px;
+    border: none;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.Active {
+    background-color: grey;
+}
+
+.OrderButtons button:last-child {
+    color: white;
+    background-color: #fe8b0d;
+    padding: 5px 20px;
+    border: none;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.MyOrderDetailsList {
+    margin-top: 50px;
+}

@@ -1,0 +1,70 @@
+.OrderDetails {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 0 auto;
+    border-style: solid;
+    border-width: 0;
+    border-color: grey;
+    border-top-width: 1px;
+    min-height: 230px;
+}
+
+.OrderDetails:last-of-type {
+    border-bottom-width: 1px;
+}
+
+.OrderTime {
+    height: 100px;
+}
+
+
+.OrderTime p:first-child {
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.OrderTime p:last-child {
+    color: grey;
+}
+
+.OrderPizzas {
+    width: 360px;
+}
+
+.OrderPizzas ul {
+    list-style-type: none;
+}
+
+.OrderPizzas ul li::before {
+    content: "\2022";
+    color: #fe8b0d;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -20px;
+    position: absolute;
+    font-size: 22px;
+    line-height: 18px;
+}
+
+.OrderPizzas ul li p {
+    font-size: 18px;
+    color: grey;
+}
+
+.OrderPizzas ul li span {
+    color: #fe8b0d;
+}
+
+.OrderPrice p {
+    color: grey;
+}
+
+.OrderPrice p:nth-child(2) {
+    color: black;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+
