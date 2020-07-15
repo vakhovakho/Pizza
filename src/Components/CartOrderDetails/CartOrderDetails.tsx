@@ -15,7 +15,7 @@ const CartOrderDetails = (props: {total: number, show: boolean}) => {
                         <Input type="text" id="number" name="number" caption="Phone number" value="" required/>
                     </div>
                     <div className={ styles.OrderDetailsEmail}>
-                        <Input type="text" id="E-mail" name="E-mail" caption="E-mail" value="" required/>
+                        <Input type="text" id="e-mail" name="e-mail" caption="E-mail" value="" required/>
                     </div>
                 </div>
                 <div className={ styles.CartOrderDetailsMiddle}>
