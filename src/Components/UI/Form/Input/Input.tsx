@@ -7,7 +7,8 @@ interface IProps {
     caption: string,
     value: string | number,
     type: string,
-    required?: boolean 
+    required?: boolean,
+    onChange?: Function 
 }
 
 const Input = (props:  IProps) => {
@@ -19,7 +20,8 @@ const Input = (props:  IProps) => {
                 name={ props.name } 
                 id={ props.id } 
                 value={ props.value } 
-                required={ props.required ? true: false } 
+                required={ props.required ? true: false }
+                onChange={ (event) => props.onChange ? props.onChange(event) : null } 
             />
         </div>
     );

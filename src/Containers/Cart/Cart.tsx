@@ -11,12 +11,14 @@ import Modal from '../../Components/UI/Modal/Modal';
 import Register from '../../Components/Register/Register';
 import Button from '../../Components/UI/Form/Button/Button';
 import { Link } from 'react-router-dom';
+import ContactDetails from '../../Core/Contracts/ContactDetails';
 
 interface IState {
     products: Array<Product>, 
     cartHeader: CartHeader,
     orderConfirmed: boolean,
-    registerMode: boolean
+    registerMode: boolean,
+    contactDetails: ContactDetails
 };
 
 class Cart extends Component {
@@ -62,7 +64,14 @@ class Cart extends Component {
             }
         ],
         orderConfirmed: false,
-        registerMode: false   
+        registerMode: false,
+        contactDetails: {
+            name: "",
+            number: "",
+            address: "",
+            email: "",
+            comment: ""
+        }   
     };
 
     addToCartHandler = (id: number) =>{
@@ -120,7 +129,6 @@ class Cart extends Component {
     }
 
     deleteHandler = (id: number, size: string, price: number) => {
-        console.log("delete handler");
         if(this.state.orderConfirmed) {
             return;
         }
@@ -168,6 +176,18 @@ class Cart extends Component {
         this.setState({orderConfirmed: false});
     }
 
+    inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const contactDetails = {...this.state.contactDetails};
+        const name = event.target.name as keyof ContactDetails;
+
+        if(name in contactDetails) {
+            contactDetails[name] = event.target.value;
+
+            this.setState({ contactDetails });
+        }
+        
+    }
+
     render() {
 
         let cartItems = (
@@ -205,6 +225,8 @@ class Cart extends Component {
                         total={ this.state.cartHeader.total } 
                         show={ this.state.orderConfirmed } 
                         backToCartClicked={ this.backToCartHandler }
+                        inputChanged={ this.inputChangeHandler }
+                        contactDetails={ this.state.contactDetails }
                     />
                 </div>
                 <Footer />
