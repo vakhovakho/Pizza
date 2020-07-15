@@ -5,5 +5,6 @@ export default interface Product {
     title: string,
     description: string,
     selectedSize: string,
-    prices: {[key: string]: number}
+    prices: {[key: string]: number},
+    count?: number
 }

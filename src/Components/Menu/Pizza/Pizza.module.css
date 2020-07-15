@@ -61,10 +61,18 @@
 .GetInBag {
     vertical-align: text-bottom;
     display: inline-block;
-    cursor: pointer;
-
 }
 
 .GetInBag img {
     width: 15px;
+    cursor: pointer;
+}
+
+.GetInBag span {
+    color: gold;
+    margin-right: 10px;
+}
+
+.Hidden {
+    display: none;
 }

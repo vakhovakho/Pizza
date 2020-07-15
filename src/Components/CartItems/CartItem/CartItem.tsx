@@ -1,30 +1,39 @@
 import React from 'react';
 import styles from './CartItem.module.css';
+import Product from '../../../Core/Contracts/Product';
 
-const CartItem = (props: any) => {
+const CartItem = (props: {product: Product, changeCountClicked: Function, orderConfirmed: boolean}) => {
     return (
         <div className={ styles.CartItem }>
             <div className={ styles.CartItemLeft}>
                 <div className={ styles.PizzaInfo }>
-                    <img src={ props.image } 
+                    <img src={ props.product.image } 
                     alt="pizza"/>
                 </div>
                 <div className={ styles.PizzaName}>
-                    <p> { props.title } </p>
-                    <p> { props.description} </p>
+                    <p> { props.product.title } </p>
+                    <p> { props.product.selectedSize} </p>
                 </div>
             </div>
             <div className={ styles.CartItemCenter}>
                 <div className={ styles.PizzaQuantity }>
-                    <button type="button">-</button>
-                    <input type="text" id="Quantity" name="Quantity" required/>
-                    <button type="button">+</button>
+                    <button 
+                        type="button" 
+                        onClick={ () => props.changeCountClicked(props.product.id, false) }
+                        className={ props.orderConfirmed ? styles.Disabled : '' }
+                    >-</button>
+                    <input type="text"  value={ props.product.count } disabled required/>
+                    <button 
+                        type="button" 
+                        onClick={ () => props.changeCountClicked(props.product.id, true) }
+                        className={ props.orderConfirmed ? styles.Disabled : '' }
+                    >+</button>
                 </div>
             </div>
             <div className={ styles.CartItemRight}>
                 <div className={ styles.PizzaPrice }>
-                    <p>100$</p>
-                    <button type="button">X</button>
+                    <p>{ (props.product.count ?? 1) * props.product.prices[props.product.selectedSize] }$</p>
+                    <button className={ props.orderConfirmed ? styles.Disabled : '' }  type="button">X</button>
                 </div>
             </div>
         </div>

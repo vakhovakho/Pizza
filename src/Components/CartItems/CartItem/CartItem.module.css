@@ -76,3 +76,7 @@
     color: grey;
     vertical-align: super;
 }
+
+.Disabled {
+    cursor: not-allowed;
+}

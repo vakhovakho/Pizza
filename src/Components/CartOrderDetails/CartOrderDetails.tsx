@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './CartOrderDetails.module.css';
 
-const CartOrderDetails = (props: any) => {
+const CartOrderDetails = (props: {total: number, show: boolean}) => {
     return (
-        <div className={ styles.CartOrderDetails }>
+        <div className={ [styles.CartOrderDetails, props.show ? styles.Show : ''].join(" ") }>
             <form>
                 <div className={ styles.CartOrderDetailsTop}>
                     <div className={ styles.OrderDetailsName}>
@@ -39,7 +39,7 @@ const CartOrderDetails = (props: any) => {
                 <div className={ styles.CartOrderDetailsBottom}>
                     <div className={ styles.OrderDetailsAmount}>
                         <p>Amount payable</p>
-                        <p>100$</p>
+                        <p>{ props.total }$</p>
                     </div>
                     <div className={ styles.OrderDetailsDeal}>
                         <button type="button">Back to cart</button>

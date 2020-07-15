@@ -1,15 +1,19 @@
 import React from 'react';
 import styles from './CartSummary.module.css';
 
-const CartSummary = (props: any) => {
+const CartSummary = (props: {total: number, confirmClicked: Function, orderConfirmed: boolean}) => {
     return (
         <div className={ styles.CartSummary }>
             <div className={ styles.OrderPrice}>
                 <p>Order price</p>
-                <p>100$</p>
+                <p>{ props.total }$</p>
             </div>
             <div className={ styles.OrderCheckOut }>
-            <button type="button">Checkout</button>
+                <button 
+                    className={ props.orderConfirmed ? styles.Disabled : '' } 
+                    type="button" 
+                    onClick={ () => props.confirmClicked() }
+                >{ props.orderConfirmed ? 'Confirmed' : 'Confirm' }</button>
             </div>
         </div>
     );

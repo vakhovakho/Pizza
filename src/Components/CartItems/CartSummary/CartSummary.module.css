@@ -16,13 +16,15 @@
     color: black;
 }
 
-.OrderCheckOut {
+
+.OrderCheckOut button {
+    border: none;
     padding: 10px 35px;
     background-color: gold;
     border-radius: 25px;
 }
 
-.OrderCheckOut button {
-    background-color: transparent;
-    border-color: transparent;
+.OrderCheckOut button.Disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
 }

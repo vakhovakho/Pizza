@@ -11,7 +11,8 @@ import CartHeader from '../../Core/Contracts/CartHeader';
 
 interface IState {
     products: Array<Product>, 
-    cart: CartHeader
+    cart: CartHeader,
+    addingToCart: number
 };
 
 
@@ -95,7 +96,8 @@ class Home extends Component {
         cart: {
             products: [],
             total: 0
-        }
+        },
+        addingToCart: 0
     }
 
 
@@ -106,6 +108,12 @@ class Home extends Component {
         if(index === -1) {
             return;
         } 
+
+        this.setState({addingToCart: id});
+
+        setTimeout( () => {
+            this.setState({addingToCart: 0});
+        }, 1000);
 
         let total = this.state.cart.total;
         total +=  products[index].prices[products[index].selectedSize];
@@ -147,6 +155,7 @@ class Home extends Component {
                 <Slider />
                 <Menu 
                     products={ this.state.products }
+                    addingToCart={ this.state.addingToCart }
                     addToCart={ this.addToCartHandler }
                     selectSize={ this.selectSizeHandler }
                 />

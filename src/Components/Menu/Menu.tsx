@@ -4,13 +4,14 @@ import Product from '../../Core/Contracts/Product';
 import styles from './Menu.module.css';
 
 
-const Menu = (props: {products: Array<Product>, addToCart: Function, selectSize: Function}) => {
+const Menu = (props: {products: Array<Product>, addToCart: Function, selectSize: Function, addingToCart: number}) => {
     const products = props.products.map( prod => {
         return <Pizza 
             product={ prod } 
             key={ prod.id } 
             addToCartClicked={ props.addToCart }
             sizeSelected = {props.selectSize }
+            addingToCart = { props.addingToCart === prod.id }
         />
     });
     
