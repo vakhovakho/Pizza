@@ -1,4 +1,7 @@
-.Register>div {
-    display: inline-block;
-    margin: 0 50px;
+.Register>div:first-child {
+    margin-bottom: 30px;
+}
+
+.Register {
+    text-align: center;
 }
