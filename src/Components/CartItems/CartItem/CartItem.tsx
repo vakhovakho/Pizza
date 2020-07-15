@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CartItem.module.css';
 import Product from '../../../Core/Contracts/Product';
 
-const CartItem = (props: {product: Product, changeCountClicked: Function, orderConfirmed: boolean}) => {
+const CartItem = (props: {product: Product, changeCountClicked: Function, orderConfirmed: boolean, deleteClicked: Function}) => {
     return (
         <div className={ styles.CartItem }>
             <div className={ styles.CartItemLeft}>
@@ -33,7 +33,11 @@ const CartItem = (props: {product: Product, changeCountClicked: Function, orderC
             <div className={ styles.CartItemRight}>
                 <div className={ styles.PizzaPrice }>
                     <p>{ (props.product.count ?? 1) * props.product.prices[props.product.selectedSize] }$</p>
-                    <button className={ props.orderConfirmed ? styles.Disabled : '' }  type="button">X</button>
+                    <button 
+                        className={ props.orderConfirmed ? styles.Disabled : '' }  
+                        onClick={ () => props.deleteClicked(props.product.id, props.product.selectedSize, props.product.prices[props.product.selectedSize]) }
+                        type="button">X
+                    </button>
                 </div>
             </div>
         </div>

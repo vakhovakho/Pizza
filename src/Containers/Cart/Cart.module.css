@@ -3,3 +3,9 @@
     min-height: 800px;
     overflow: hidden;
 }
+
+.EmptyCart {
+    text-align: center;
+    margin-top: 50px;
+    color: grey;
+}

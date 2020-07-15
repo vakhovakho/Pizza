@@ -9,6 +9,8 @@ import CartHeader from '../../Core/Contracts/CartHeader';
 import styles from './Cart.module.css';
 import Modal from '../../Components/UI/Modal/Modal';
 import Register from '../../Components/Register/Register';
+import Button from '../../Components/UI/Form/Button/Button';
+import { Link } from 'react-router-dom';
 
 interface IState {
     products: Array<Product>, 
@@ -117,6 +119,35 @@ class Cart extends Component {
         }
     }
 
+    deleteHandler = (id: number, size: string, price: number) => {
+        console.log("delete handler");
+        if(this.state.orderConfirmed) {
+            return;
+        }
+
+        const products = [...this.state.products].filter( product => product.id !== id );
+       
+        this.setState({products});
+
+        let cartProducts = [...this.state.cartHeader.products];
+        const cartProduct = cartProducts.find(p => p.id === id && p.size === size);
+
+        if(cartProduct === undefined) {
+            return;
+        }
+
+        let total = this.state.cartHeader.total;
+        total -= cartProduct.count * price;
+
+        cartProducts = cartProducts.filter( product => product.id !== id );
+
+        const cartHeader = {...this.state.cartHeader};
+        cartHeader.products = cartProducts;
+        cartHeader.total = total;
+
+        this.setState({cartHeader});
+    }
+
     confirmClickHandler = () => {
         if(this.state.orderConfirmed) {
             return;
@@ -138,6 +169,30 @@ class Cart extends Component {
     }
 
     render() {
+
+        let cartItems = (
+            <div className={ styles.EmptyCart }>
+                <h3>Cart Is Empty</h3>
+                <Link to="/">
+                    <Button>Back To Home</Button>
+                </Link>
+                
+            </div>
+        );
+
+        if(this.state.cartHeader.total) {
+            cartItems = (
+                <CartItems 
+                    products={ this.state.products }
+                    orderConfirmed={ this.state.orderConfirmed }
+                    changeCount={ this.changeCountHandler }
+                    total = { this.state.cartHeader.total }
+                    confirmClick = { this.confirmClickHandler }
+                    deleteClick = { this.deleteHandler }
+                />
+            );
+        }
+
         return (
             <div className={ styles.Cart }>
                 <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegisterModeHandler }>
@@ -145,13 +200,7 @@ class Cart extends Component {
                 </Modal>
                 <Header cart={ this.state.cartHeader }  registerClicked={ this.startRegistrationMode } />
                 <div className={ styles.CartBody }>
-                    <CartItems 
-                        products={ this.state.products }
-                        orderConfirmed={ this.state.orderConfirmed }
-                        changeCount={ this.changeCountHandler }
-                        total = { this.state.cartHeader.total }
-                        confirmClick = { this.confirmClickHandler }
-                    />
+                    { cartItems }
                     <CartOrderDetails 
                         total={ this.state.cartHeader.total } 
                         show={ this.state.orderConfirmed } 

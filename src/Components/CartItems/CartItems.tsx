@@ -9,7 +9,8 @@ interface IProps {
     changeCount: Function, 
     total: number, 
     confirmClick: Function, 
-    orderConfirmed: boolean
+    orderConfirmed: boolean,
+    deleteClick: Function
 };
 
 const CartItems = (props: IProps) => {
@@ -19,6 +20,7 @@ const CartItems = (props: IProps) => {
                 key={ product.id } 
                 changeCountClicked={ props.changeCount }
                 orderConfirmed={ props.orderConfirmed }
+                deleteClicked={ props.deleteClick }
             />
     });
 
