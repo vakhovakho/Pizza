@@ -12,12 +12,14 @@ import Register from '../../Components/Register/Register';
 import Button from '../../Components/UI/Form/Button/Button';
 import { Link } from 'react-router-dom';
 import ContactDetails from '../../Core/Contracts/ContactDetails';
+import Login from '../../Components/Login/Login';
 
 interface IState {
     products: Array<Product>, 
     cartHeader: CartHeader,
     orderConfirmed: boolean,
     registerMode: boolean,
+    loginMode: boolean,
     contactDetails: ContactDetails
 };
 
@@ -65,6 +67,7 @@ class Cart extends Component {
         ],
         orderConfirmed: false,
         registerMode: false,
+        loginMode: false,
         contactDetails: {
             name: "",
             number: "",
@@ -164,12 +167,20 @@ class Cart extends Component {
         this.setState({orderConfirmed: true});
     }
 
-    cancelRegisterModeHandler = () => {
+    startRegistrationModeHandler = () => {
+        this.setState({registerMode: true});
+    }
+
+    cancelRegistrationModeHandler = () => {
         this.setState({registerMode: false});
     }
 
-    startRegistrationMode = () => {
-        this.setState({registerMode: true});
+    startLoginModeHandler = () => {
+        this.setState({loginMode: true});
+    }
+
+    cancelLoginModeHandler = () => {
+        this.setState({loginMode: false});
     }
 
     backToCartHandler = () => {
@@ -215,10 +226,13 @@ class Cart extends Component {
 
         return (
             <div className={ styles.Cart }>
-                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegisterModeHandler }>
+                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegistrationModeHandler }>
                     <Register />
                 </Modal>
-                <Header cart={ this.state.cartHeader }  registerClicked={ this.startRegistrationMode } />
+                <Modal show={ this.state.loginMode } modalClosed={ this.cancelLoginModeHandler }>
+                    <Login />
+                </Modal>
+                <Header cart={ this.state.cartHeader }  registerClicked={ this.startRegistrationModeHandler } loginClicked={ this.startLoginModeHandler } />
                 <div className={ styles.CartBody }>
                     { cartItems }
                     <CartOrderDetails 

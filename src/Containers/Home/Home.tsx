@@ -10,12 +10,14 @@ import styles from './Home.module.css';
 import CartHeader from '../../Core/Contracts/CartHeader';
 import Modal from '../../Components/UI/Modal/Modal';
 import Register from '../../Components/Register/Register';
+import Login from '../../Components/Login/Login';
 
 interface IState {
     products: Array<Product>, 
     cart: CartHeader,
     addingToCart: number,
-    registerMode: boolean
+    registerMode: boolean,
+    loginMode: boolean,
 };
 
 
@@ -101,7 +103,8 @@ class Home extends Component {
             total: 0
         },
         addingToCart: 0,
-        registerMode: false
+        registerMode: false,
+        loginMode: false,
     }
 
 
@@ -152,21 +155,32 @@ class Home extends Component {
         
     }
 
-    cancelRegisterModeHandler = () => {
+    startRegistrationModeHandler = () => {
+        this.setState({registerMode: true});
+    }
+
+    cancelRegistrationModeHandler = () => {
         this.setState({registerMode: false});
     }
 
-    startRegistrationMode = () => {
-        this.setState({registerMode: true});
+    startLoginModeHandler = () => {
+        this.setState({loginMode: true});
+    }
+
+    cancelLoginModeHandler = () => {
+        this.setState({loginMode: false});
     }
 
     render() {
         return (
             <div className={ styles.Home }>
-                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegisterModeHandler }>
+                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegistrationModeHandler }>
                     <Register />
                 </Modal>
-                <Header cart={ this.state.cart } registerClicked={ this.startRegistrationMode } />
+                <Modal show={ this.state.loginMode } modalClosed={ this.cancelLoginModeHandler }>
+                    <Login />
+                </Modal>
+                <Header cart={ this.state.cart } registerClicked={ this.startRegistrationModeHandler } loginClicked={ this.startLoginModeHandler } />
                 <Slider />
                 <Menu 
                     products={ this.state.products }

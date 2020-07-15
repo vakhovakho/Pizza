@@ -3,7 +3,7 @@ import styles from './Header.module.css';
 import CartHeader from '../../Core/Contracts/CartHeader';
 import { Link } from 'react-router-dom';
 
-const Header = (props: {cart: CartHeader, registerClicked: Function}) => {
+const Header = (props: {cart: CartHeader, registerClicked: Function,  loginClicked: Function}) => {
     return (
         <div className={ styles.Header }>
             <div className={ styles.HeaderNav }>
@@ -33,7 +33,7 @@ const Header = (props: {cart: CartHeader, registerClicked: Function}) => {
                 <div className={ styles.Orders }>
                     <div className={ styles.Registration }>
                         <button onClick={() => props.registerClicked()}>Registration</button>
-                        <button>Allready have an account</button>
+                        <button onClick={() => props.loginClicked()}>Allready have an account</button>
                     </div>
                 </div>
                 <div className={ styles.Cart}>
