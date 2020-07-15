@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import styles from './Button.module.css';
 
-const Button = (props: {children: ReactNode}) => {
+const Button = (props: {children: ReactNode, onClick?: Function}) => {
     return (
-        <button className={ styles.Button }>
+        <button className={ styles.Button } onClick={ () => props.onClick ? props.onClick() : null }>
             { props.children }
         </button>
     );

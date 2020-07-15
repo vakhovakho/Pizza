@@ -1,6 +1,11 @@
 .CartItems {
-    width: calc(100% - 400px);
+    width: 100%;
     margin-top: 50px;
     margin: 50px auto;
     display: inline-block;
+    transition: width .5s;
+}
+
+.CartItems.Shrinked {
+    width: calc(100% - 400px);
 }

@@ -133,6 +133,10 @@ class Cart extends Component {
         this.setState({registerMode: true});
     }
 
+    backToCartHandler = () => {
+        this.setState({orderConfirmed: false});
+    }
+
     render() {
         return (
             <div className={ styles.Cart }>
@@ -148,7 +152,11 @@ class Cart extends Component {
                         total = { this.state.cartHeader.total }
                         confirmClick = { this.confirmClickHandler }
                     />
-                    <CartOrderDetails total={ this.state.cartHeader.total } show={ this.state.orderConfirmed } />
+                    <CartOrderDetails 
+                        total={ this.state.cartHeader.total } 
+                        show={ this.state.orderConfirmed } 
+                        backToCartClicked={ this.backToCartHandler }
+                    />
                 </div>
                 <Footer />
             </div>
