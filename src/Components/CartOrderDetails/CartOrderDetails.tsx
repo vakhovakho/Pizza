@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './CartOrderDetails.module.css';
+import Input from '../UI/Form/Input/Input';
 
 const CartOrderDetails = (props: {total: number, show: boolean}) => {
     return (
@@ -8,27 +9,19 @@ const CartOrderDetails = (props: {total: number, show: boolean}) => {
                 <div className={ styles.CartOrderDetailsTop}>
                     <div className={ styles.OrderDetailsName}>
                         <h2>Contact details</h2>
-                        <p>Your name</p>
-                        <input className={ styles.OrderDetailsInput}
-                            type="text" id="name" name="name" required/>
+                        <Input type="text" id="name" name="name" caption="Full Name" value="" required/>
                     </div>
                     <div className={ styles.OrderDetailsNumber}>
-                        <p>Phone number</p>
-                        <input className={ styles.OrderDetailsInput}
-                            type="text" id="number" name="number" required/>
+                        <Input type="text" id="number" name="number" caption="Phone number" value="" required/>
                     </div>
                     <div className={ styles.OrderDetailsEmail}>
-                        <p>E-mail address</p>
-                        <input className={ styles.OrderDetailsInput}
-                            type="text" id="email" name="email" required/>
+                        <Input type="text" id="E-mail" name="E-mail" caption="E-mail" value="" required/>
                     </div>
                 </div>
                 <div className={ styles.CartOrderDetailsMiddle}>
                     <div className={ styles.OrderDetailsAddress}>
                         <h2>Order address</h2>
-                        <p>Street</p>
-                        <input className={ styles.OrderDetailsInput}
-                            type="text" id="street" name="street" required/>
+                        <Input type="text" id="street" name="street" caption="Street Name" value="" required/>
                     </div>
                     <div  className={ styles.OrderDetailsComment}>
                         <p>Comment</p>
