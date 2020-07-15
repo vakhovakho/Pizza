@@ -11,10 +11,6 @@ interface IProps {
 
 class Modal extends Component<IProps>{
 
-    constructor(props: IProps) {
-        super(props)
-      }
-
     shouldComponentUpdate(nextProps: any, nextState: any) {
         return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
     }
