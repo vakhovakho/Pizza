@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Pizza.module.css';
 import Product from '../../../Core/Contracts/Product';
+import { connect } from 'react-redux';
+import { addProduct } from '../../../redux/cart/actions'; 
 
-const Pizza = (props: {product: Product, addToCartClicked: Function, sizeSelected: Function, addingToCart: boolean}) => {
+const Pizza = (props: {product: Product, sizeSelected: Function, addProduct?: Function}) => {
+    const [addingToCart, setAddingToCart] = useState(false);
+    
+    const addToCart = (product: Product) => {
+        if(props.addProduct !== undefined) {
+            props.addProduct(product);
+        }
+       
+        setAddingToCart(true);
+
+        setTimeout( () => {
+            setAddingToCart(false);
+        }, 1000);
+    }
+
     return (
         <div className={ styles.Pizza }> 
             <img src={ props.product.image } alt="pizza pic" />
@@ -33,8 +49,8 @@ const Pizza = (props: {product: Product, addToCartClicked: Function, sizeSelecte
                 <div className={ styles.ProductPrice }>
                     <p>{ props.product.prices[props.product.selectedSize] }$</p>
                 </div>
-                <div className={ styles.GetInBag } onClick={ () => props.addToCartClicked(props.product.id) }>
-                    <span className={ props.addingToCart ? '' : styles.Hidden }>added</span>
+                <div className={ styles.GetInBag } onClick={ () => addToCart(props.product) }>
+                    <span className={ addingToCart ? '' : styles.Hidden }>added</span>
                     <img src="/images/icons/cart.png" alt="shopping bag icon"></img>
                 </div>
             </div>
@@ -42,4 +58,4 @@ const Pizza = (props: {product: Product, addToCartClicked: Function, sizeSelecte
         );
 }
 
-export default Pizza;
+export default connect( null, { addProduct })(Pizza)

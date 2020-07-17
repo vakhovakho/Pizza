@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.css';
 import CartHeader from '../../Core/Contracts/CartHeader';
 import { Link } from 'react-router-dom';
+import Modal from '../UI/Modal/Modal';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import { connect } from "react-redux";
+import { getCartData } from "../../redux/cart/selectors";
 
-const Header = (props: {cart: CartHeader, registerClicked: Function,  loginClicked: Function}) => {
+const Header = (props: any) => {
+    const  [registrationMode, setRegisrationMode] = useState(false);
+    const  [loginMode, setLoginMode] = useState(false);
+    
     return (
         <div className={ styles.Header }>
+            <Modal show={ registrationMode } modalClosed={ () => setRegisrationMode(false) }>
+                <Register />
+            </Modal>
+            <Modal show={ loginMode } modalClosed={ () => setLoginMode(false) }>
+                <Login />
+            </Modal>
             <div className={ styles.HeaderNav }>
                 <div className={ styles.Contact }>
                     <div className={ styles.PhoneNumber }>
@@ -32,8 +46,8 @@ const Header = (props: {cart: CartHeader, registerClicked: Function,  loginClick
                 </div>
                 <div className={ styles.Orders }>
                     <div className={ styles.Registration }>
-                        <button onClick={() => props.registerClicked()}>Registration</button>
-                        <button onClick={() => props.loginClicked()}>Allready have an account</button>
+                        <button onClick={() => setRegisrationMode(true)}>Registration</button>
+                        <button onClick={() => setLoginMode(true)}>Allready have an account</button>
                     </div>
                 </div>
                 <div className={ styles.Cart}>
@@ -41,7 +55,7 @@ const Header = (props: {cart: CartHeader, registerClicked: Function,  loginClick
                         <img src="/images/icons/cart.png" alt="shopping bag icon"></img>
                     </div>
                     <div className={ styles.CartCounter }>
-                        <p>{ props.cart.total }$</p>
+                        <p>{  props.cart.total  }$</p>
                         <Link to="/cart" className={ styles.goToCart }>In the cart</Link>
                     </div>
                 </div>
@@ -50,4 +64,4 @@ const Header = (props: {cart: CartHeader, registerClicked: Function,  loginClick
     );
 }
 
-export default Header;
+export default connect(state => ({ cart: getCartData(state as {cart: CartHeader} ) }))(Header);

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../../Components/Header/Header';
 import Slider from '../../Components/Slider/Slider';
 import Menu from '../../Components/Menu/Menu';
 import Benefits from '../../Components/Benefits/Benefits';
@@ -7,19 +6,9 @@ import Footer from '../../Components/Footer/Footer';
 import Product from '../../Core/Contracts/Product';
 
 import styles from './Home.module.css';
-import CartHeader from '../../Core/Contracts/CartHeader';
-import Modal from '../../Components/UI/Modal/Modal';
-import Register from '../../Components/Register/Register';
-import Login from '../../Components/Login/Login';
-import ContactDetails from '../../Core/Contracts/ContactDetails';
 
 interface IState {
     products: Array<Product>, 
-    cart: CartHeader,
-    addingToCart: number,
-    registerMode: boolean,
-    loginMode: boolean,
-    registerData: ContactDetails
 };
 
 
@@ -99,60 +88,7 @@ class Home extends Component {
                 selectedSize: 'medium',
                 prices: {small: 10, medium: 20, large: 30}
             }
-        ],
-        cart: {
-            products: [],
-            total: 0
-        },
-        registerData: {
-            name: "",
-            number: "",
-            email: "",
-            address: "",
-            password: "",
-            password_confirmation: ""
-        },
-        addingToCart: 0,
-        registerMode: false,
-        loginMode: false,
-    }
-
-
-    addToCartHandler = (id: number) =>{
-        const products = [...this.state.products];
-        const index = products.findIndex(p => p.id === id);
-        
-        if(index === -1) {
-            return;
-        } 
-
-        this.setState({addingToCart: id});
-
-        setTimeout( () => {
-            this.setState({addingToCart: 0});
-        }, 1000);
-
-        let total = this.state.cart.total;
-        total +=  products[index].prices[products[index].selectedSize];
-
-        const cartProducts = [...this.state.cart.products];
-        const cartProductIndex = cartProducts.findIndex(p => p.id === id && p.size === products[index].selectedSize);
-
-        if(cartProductIndex > -1) {
-            cartProducts[cartProductIndex] = {...cartProducts[cartProductIndex], count: cartProducts[cartProductIndex].count + 1};
-        } else {
-            cartProducts.push({
-                id: products[index].id,
-                size: products[index].selectedSize,
-                count: 1
-            });
-        }
-
-        const cart = {...this.state.cart};
-        cart.products = cartProducts;
-        cart.total = total;
-        this.setState({cart});
-        
+        ]
     }
 
     selectSizeHandler = (id: number, size: string) => {
@@ -165,53 +101,12 @@ class Home extends Component {
         
     }
 
-    startRegistrationModeHandler = () => {
-        this.setState({registerMode: true});
-    }
-
-    cancelRegistrationModeHandler = () => {
-        this.setState({registerMode: false});
-    }
-
-    startLoginModeHandler = () => {
-        this.setState({loginMode: true});
-    }
-
-    cancelLoginModeHandler = () => {
-        this.setState({loginMode: false});
-    }
-
-    registrationInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const registerData = {...this.state.registerData};
-        const name = event.target.name as keyof ContactDetails;
-
-        if(name in registerData) {
-            registerData[name] = event.target.value;
-
-            this.setState({ registerData });
-        }
-        
-    }
-
     render() {
         return (
             <div className={ styles.Home }>
-                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegistrationModeHandler }>
-                    <Register registerData={ this.state.registerData } inputChanged={ this.registrationInputChangeHandler } />
-                </Modal>
-                <Modal show={ this.state.loginMode } modalClosed={ this.cancelLoginModeHandler }>
-                    <Login />
-                </Modal>
-                <Header 
-                    cart={ this.state.cart } 
-                    registerClicked={ this.startRegistrationModeHandler } 
-                    loginClicked={ this.startLoginModeHandler } 
-                />
                 <Slider />
                 <Menu 
                     products={ this.state.products }
-                    addingToCart={ this.state.addingToCart }
-                    addToCart={ this.addToCartHandler }
                     selectSize={ this.selectSizeHandler }
                 />
                 <Benefits />

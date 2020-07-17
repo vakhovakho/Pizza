@@ -5,17 +5,19 @@ import Wrapper from './Components/UI/Wrapper/Wrapper';
 import { Switch, Route, BrowserRouter} from "react-router-dom";
 import './App.css';
 import MyOrder from './Components/MyOrders/MyOrders';
+import Header from './Components/Header/Header';
 
 function App() {
   return (
     <BrowserRouter>
-    <Wrapper>
-      <Switch>
-        <Route path="/" exact component={ Home } />
-        <Route path="/my-orders" exact component={ MyOrder } />
-        <Route path="/cart" component={ Cart } />
-      </Switch>
-    </Wrapper>
+      <Wrapper>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={ Home } />
+          <Route path="/my-orders" exact component={ MyOrder } />
+          <Route path="/cart" component={ Cart } />
+        </Switch>
+      </Wrapper>
     </BrowserRouter>
   )
 }

@@ -35,7 +35,7 @@ const CartItem = (props: {product: Product, changeCountClicked: Function, orderC
                     <p>{ (props.product.count ?? 1) * props.product.prices[props.product.selectedSize] }$</p>
                     <button 
                         className={ props.orderConfirmed ? styles.Disabled : '' }  
-                        onClick={ () => props.deleteClicked(props.product.id, props.product.selectedSize, props.product.prices[props.product.selectedSize]) }
+                        onClick={ () => props.deleteClicked(props.product) }
                         type="button">X
                     </button>
                 </div>

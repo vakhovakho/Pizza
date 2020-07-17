@@ -1,39 +1,35 @@
 import React, { Component } from 'react';
-import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import CartItems from '../../Components/CartItems/CartItems';
 import CartOrderDetails from '../../Components/CartOrderDetails/CartOrderDetails';
-import Product from '../../Core/Contracts/Product';
-import CartHeader from '../../Core/Contracts/CartHeader';
+import Button from '../../Components/UI/Form/Button/Button';
 
 import styles from './Cart.module.css';
-import Modal from '../../Components/UI/Modal/Modal';
-import Register from '../../Components/Register/Register';
-import Button from '../../Components/UI/Form/Button/Button';
+
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addProduct, removeProduct, substractProduct } from '../../redux/cart/actions';
+import { getCartData } from '../../redux/cart/selectors';
+
+import Product from '../../Core/Contracts/Product';
 import ContactDetails from '../../Core/Contracts/ContactDetails';
-import Login from '../../Components/Login/Login';
+import CartHeader from '../../Core/Contracts/CartHeader';
 
 interface IState {
     products: Array<Product>, 
-    cartHeader: CartHeader,
     orderConfirmed: boolean,
-    registerMode: boolean,
-    loginMode: boolean,
-    contactDetails: ContactDetails,
-    registerData: ContactDetails
+    contactDetails: ContactDetails
 };
 
-class Cart extends Component {
+interface IProps {
+    addProduct?: Function,
+    removeProduct?: Function,
+    substractProduct?: Function,
+    cartHeaderData?: CartHeader
+}
+
+class Cart extends Component<IProps> {
     state: IState = {
-        cartHeader: {
-            products: [
-                {id: 1, count: 1, size: 'small'},
-                {id: 2, count: 1, size: 'medium'},
-                {id: 3, count: 1, size: 'large'},
-            ],
-            total: 60
-        },
         products: [
             { 
                 id: 1,
@@ -67,8 +63,6 @@ class Cart extends Component {
             }
         ],
         orderConfirmed: false,
-        registerMode: false,
-        loginMode: false,
         contactDetails: {
             name: "",
             number: "",
@@ -76,50 +70,7 @@ class Cart extends Component {
             email: "",
             comment: ""
         },
-        registerData: {
-            name: "",
-            number: "",
-            email: "",
-            address: "",
-            password: "",
-            password_confirmation: ""
-        }   
     };
-
-    addToCartHandler = (id: number) =>{
-        if(this.state.orderConfirmed) {
-            return;
-        }
-
-        const products = [...this.state.products];
-        const index = products.findIndex(p => p.id === id);
-        
-        if(index === -1) {
-            return;
-        } 
-
-        let total = this.state.cartHeader.total;
-        total +=  products[index].prices[products[index].selectedSize];
-
-        const cartProducts = [...this.state.cartHeader.products];
-        const cartProductIndex = cartProducts.findIndex(p => p.id === id && p.size === products[index].selectedSize);
-
-        if(cartProductIndex > -1) {
-            cartProducts[cartProductIndex] = {...cartProducts[cartProductIndex], count: cartProducts[cartProductIndex].count + 1};
-        } else {
-            cartProducts.push({
-                id: products[index].id,
-                size: products[index].selectedSize,
-                count: 1
-            });
-        }
-
-        const cartHeader = {...this.state.cartHeader};
-        cartHeader.products = cartProducts;
-        cartHeader.total = total;
-        this.setState({cartHeader});
-        
-    }
 
     changeCountHandler = (id: number, increase: boolean) => {
         if(this.state.orderConfirmed) {
@@ -130,42 +81,39 @@ class Cart extends Component {
         const index = products.findIndex( prod => prod.id === id);
         if(index > -1) {
             if(increase) {
-                products[index].count = (products[index].count ?? 0) + 1;
-                this.addToCartHandler(id);
+                if(this.props.addProduct !== undefined) {
+                    this.props.addProduct(products[index]);
+                    products[index].count = (products[index].count ?? 0) + 1;
+                }
             } else {
-                products[index].count = (products[index].count ?? 0) - 1;
+                if(products[index].count === 1) {
+                    return this.deleteHandler(products[index]);
+                } else {
+                    if(this.props.substractProduct !== undefined) {
+                        this.props.substractProduct(products[index]);
+                        products[index].count = (products[index].count ?? 0) - 1;
+                    }
+                    
+                }
             }
             
             this.setState({products});
         }
     }
 
-    deleteHandler = (id: number, size: string, price: number) => {
+    deleteHandler = (product: Product) => {
+        console.log(product);
+
         if(this.state.orderConfirmed) {
             return;
         }
 
-        const products = [...this.state.products].filter( product => product.id !== id );
-       
-        this.setState({products});
-
-        let cartProducts = [...this.state.cartHeader.products];
-        const cartProduct = cartProducts.find(p => p.id === id && p.size === size);
-
-        if(cartProduct === undefined) {
-            return;
-        }
-
-        let total = this.state.cartHeader.total;
-        total -= cartProduct.count * price;
-
-        cartProducts = cartProducts.filter( product => product.id !== id );
-
-        const cartHeader = {...this.state.cartHeader};
-        cartHeader.products = cartProducts;
-        cartHeader.total = total;
-
-        this.setState({cartHeader});
+        if(this.props.removeProduct !== undefined) {
+            this.props.removeProduct(product);
+            const products = [...this.state.products].filter( prod => prod.id !== product.id );
+    
+            this.setState({products});
+        } 
     }
 
     confirmClickHandler = () => {
@@ -176,22 +124,7 @@ class Cart extends Component {
         this.setState({orderConfirmed: true});
     }
 
-    startRegistrationModeHandler = () => {
-        this.setState({registerMode: true});
-    }
-
-    cancelRegistrationModeHandler = () => {
-        this.setState({registerMode: false});
-    }
-
-    startLoginModeHandler = () => {
-        this.setState({loginMode: true});
-    }
-
-    cancelLoginModeHandler = () => {
-        this.setState({loginMode: false});
-    }
-
+   
     backToCartHandler = () => {
         this.setState({orderConfirmed: false});
     }
@@ -208,18 +141,6 @@ class Cart extends Component {
         
     }
 
-    registrationInputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const registerData = {...this.state.registerData};
-        const name = event.target.name as keyof ContactDetails;
-
-        if(name in registerData) {
-            registerData[name] = event.target.value;
-
-            this.setState({ registerData });
-        }
-        
-    }
-
     render() {
 
         let cartItems = (
@@ -232,13 +153,13 @@ class Cart extends Component {
             </div>
         );
 
-        if(this.state.cartHeader.total) {
+        if(this.props.cartHeaderData && this.props.cartHeaderData.total) {
             cartItems = (
                 <CartItems 
                     products={ this.state.products }
                     orderConfirmed={ this.state.orderConfirmed }
                     changeCount={ this.changeCountHandler }
-                    total = { this.state.cartHeader.total }
+                    total = { this.props.cartHeaderData ? this.props.cartHeaderData.total : 0 }
                     confirmClick = { this.confirmClickHandler }
                     deleteClick = { this.deleteHandler }
                 />
@@ -247,17 +168,10 @@ class Cart extends Component {
 
         return (
             <div className={ styles.Cart }>
-                <Modal show={ this.state.registerMode } modalClosed={ this.cancelRegistrationModeHandler }>
-                    <Register registerData={ this.state.registerData } inputChanged={ this.registrationInputChangeHandler } />
-                </Modal>
-                <Modal show={ this.state.loginMode } modalClosed={ this.cancelLoginModeHandler }>
-                    <Login />
-                </Modal>
-                <Header cart={ this.state.cartHeader }  registerClicked={ this.startRegistrationModeHandler } loginClicked={ this.startLoginModeHandler } />
                 <div className={ styles.CartBody }>
                     { cartItems }
                     <CartOrderDetails 
-                        total={ this.state.cartHeader.total } 
+                        total={ this.props.cartHeaderData ? this.props.cartHeaderData.total : 0 } 
                         show={ this.state.orderConfirmed } 
                         backToCartClicked={ this.backToCartHandler }
                         inputChanged={ this.inputChangeHandler }
@@ -270,4 +184,4 @@ class Cart extends Component {
     }
 }
 
-export default Cart;
+export default connect( state => ({ cartHeaderData: getCartData(state as {cart: CartHeader} ) }), { addProduct, substractProduct, removeProduct })(Cart)
