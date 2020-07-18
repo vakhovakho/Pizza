@@ -6,6 +6,7 @@
 .Register {
     text-align: center;
     padding: 10px;
+    width: 720px;
 }
 
 .RegisterContact {
@@ -21,4 +22,5 @@
 .Register button {
     display: block;
     margin: 30px auto 0;
+    font-size: 16px;
 }
