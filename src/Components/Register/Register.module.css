@@ -7,3 +7,18 @@
     text-align: center;
     padding: 10px;
 }
+
+.RegisterContact {
+    display: inline-block;
+    margin: 0 50px;
+}
+
+.RegisterLogin {
+    display: inline-block;
+    margin: 0 50px;
+}
+
+.Register button {
+    display: block;
+    margin: 30px auto 0;
+}

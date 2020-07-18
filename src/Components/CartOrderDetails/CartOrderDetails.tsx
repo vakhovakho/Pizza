@@ -38,7 +38,7 @@ const CartOrderDetails = (props: {total: number, show: boolean, backToCartClicke
             </div>
             <div className={ styles.CartOrderDetailsBottom}>
                 <div className={ styles.OrderDetailsAmount}>
-                    <p>Amount payable</p>
+                    <p>Amount payable:</p>
                     <p>{ props.total }$</p>
                 </div>
                 <div className={ styles.OrderDetailsDeal}>

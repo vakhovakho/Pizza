@@ -31,13 +31,13 @@ const Register = ( props: any) => {
 
     return (
         <div className={ styles.Register }>
-            <div>
+            <div className={ styles.RegisterContact }>
                 <h2>Contact information</h2>
                 <Input type="text" id="name" name="name" caption="Full Name" required onChange={ inputChangeHandler }  value={ registrationData.name } />
                 <Input type="text" id="number" name="number" caption="Phone number" required onChange={ inputChangeHandler }  value={ registrationData.number }/>
                 <Input type="text" id="address" name="address" caption="Address" required onChange={ inputChangeHandler }  value={ registrationData.address }/>
             </div>
-            <div>
+            <div className={ styles.RegisterLogin }>
                 <h2>Login information</h2>
                 <Input type="email" id="email" name="email" caption="E-mail" required onChange={ inputChangeHandler }  value={ registrationData.email }/>
                 <Input type="password" id="password" name="password" caption="Type your password" required onChange={ inputChangeHandler }  value={ registrationData.password ?? '' }/>

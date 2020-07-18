@@ -27,8 +27,10 @@ const CartItems = (props: IProps) => {
     return (
         <div className={ [styles.CartItems, props.orderConfirmed ? styles.Shrinked : ''].join(" ") }>
             <form>
-               { products }
-               <CartSummary total={ props.total } confirmClicked={ props.confirmClick } orderConfirmed={ props.orderConfirmed } />
+                <div>
+                    { products }
+                </div>
+                <CartSummary total={ props.total } confirmClicked={ props.confirmClick } orderConfirmed={ props.orderConfirmed } />
             </form>
         </div>
     );

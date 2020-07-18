@@ -7,5 +7,6 @@
 }
 
 .CartItems.Shrinked {
-    width: calc(100% - 400px);
+    width: calc(100% - 440px);
 }
+
