@@ -4,12 +4,8 @@ import { CartActions } from "../actionTypes";
 import Product from "../../Core/Contracts/Product";
 
 const initialState: CartHeader = {
-    products: [
-        {id: 1, count: 1, size: 'small'},
-        {id: 2, count: 1, size: 'medium'},
-        {id: 3, count: 1, size: 'large'},
-    ],
-    total: 60
+    products: [],
+    total: 0
 }
 
 const addToCart = (state: CartHeader, product: Product): CartHeader => {
@@ -32,7 +28,7 @@ const addToCart = (state: CartHeader, product: Product): CartHeader => {
     }
 
     currentState.products = cartProducts;
-    currentState.total = total;
+    currentState.total = Math.round(total * 100) / 100;
     return currentState;
 }
 
@@ -51,7 +47,7 @@ const removeFromCart = (state: CartHeader, product: Product): CartHeader => {
     cartProducts = cartProducts.filter( prod => prod.id !== product.id );
 
     currentState.products = cartProducts;
-    currentState.total = total;
+    currentState.total = Math.round(total * 100) / 100;;
 
     return currentState;
 }
@@ -72,7 +68,7 @@ const substractFromCart = (state: CartHeader, product: Product): CartHeader => {
     cartProducts[cartProductIndex] = {...cartProducts[cartProductIndex], count: cartProducts[cartProductIndex].count - 1};
 
     currentState.products = cartProducts;
-    currentState.total = total;
+    currentState.total = Math.round(total * 100) / 100;;
     return currentState;
 }
 
