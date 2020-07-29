@@ -9,7 +9,7 @@ const Menu = (props: {products: Array<Product>, selectSize: Function}) => {
         return <Pizza 
             product={ prod } 
             key={ prod.id } 
-            sizeSelected = {props.selectSize }
+            sizeSelected = { props.selectSize }
         />
     });
     
