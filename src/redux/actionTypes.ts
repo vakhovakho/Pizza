@@ -3,3 +3,8 @@ export enum CartActions {
     SUBSTRACT_PRODUCT = "SUBSTRACT_PRODUCT",
     REMOVE_PRODUCT = "REMOVE_PRODUCT"
 }
+
+export enum UserActions {
+    REGISTER = "REGISTER",
+    LOGIN = "LOGIN"
+}

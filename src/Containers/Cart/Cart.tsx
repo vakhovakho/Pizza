@@ -14,6 +14,7 @@ import { getCartData } from '../../redux/cart/selectors';
 import Product from '../../Core/Contracts/Product';
 import ContactDetails from '../../Core/Contracts/ContactDetails';
 import CartHeader from '../../Core/Contracts/CartHeader';
+import IStore from '../../redux/Contracts/IStore';
 
 interface IState {
     products: Array<Product>, 
@@ -184,4 +185,4 @@ class Cart extends Component<IProps> {
     }
 }
 
-export default connect( state => ({ cartHeaderData: getCartData(state as {cart: CartHeader} ) }), { addProduct, substractProduct, removeProduct })(Cart)
+export default connect( state => ({ cartHeaderData: getCartData(state as IStore ) }), { addProduct, substractProduct, removeProduct })(Cart)

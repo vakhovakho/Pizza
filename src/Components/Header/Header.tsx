@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styles from './Header.module.css';
-import CartHeader from '../../Core/Contracts/CartHeader';
 import { Link } from 'react-router-dom';
 import Modal from '../UI/Modal/Modal';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import { connect } from "react-redux";
 import { getCartData } from "../../redux/cart/selectors";
+import IStore from '../../redux/Contracts/IStore';
 
 const Header = (props: any) => {
     const  [registrationMode, setRegisrationMode] = useState(false);
@@ -64,4 +64,4 @@ const Header = (props: any) => {
     );
 }
 
-export default connect(state => ({ cart: getCartData(state as {cart: CartHeader} ) }))(Header);
+export default connect(state => ({ cart: getCartData(state as IStore ) }))(Header);
