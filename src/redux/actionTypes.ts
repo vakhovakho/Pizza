@@ -6,5 +6,12 @@ export enum CartActions {
 
 export enum UserActions {
     REGISTER = "REGISTER",
-    LOGIN = "LOGIN"
+    LOGIN = "LOGIN",
+    WATCH = "WATCH",
+    UPDATE_GUEST_TOKEN = "UPDATE_GUEST_TOKEN"
+}
+
+export enum FetchActions {
+    FETCH_BEGIN = "FETCH_BEGIN",
+    FETCH_FINISH = "FETCH_FINISH",
 }

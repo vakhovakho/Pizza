@@ -3,8 +3,10 @@ import styles from './Register.module.css';
 import Input from '../UI/Form/Input/Input';
 import Button from '../UI/Form/Button/Button';
 import ContactDetails from '../../Core/Contracts/ContactDetails';
+import { connect } from 'react-redux';
+import { registration } from '../../redux/user/actions'; 
 
-const Register = ( props: any) => {
+const Register = ( props: {registration: Function}) => {
 
     const initialRegisterData: ContactDetails = {
         name: "",
@@ -43,9 +45,9 @@ const Register = ( props: any) => {
                 <Input type="password" id="password" name="password" caption="Type your password" required onChange={ inputChangeHandler }  value={ registrationData.password ?? '' }/>
                 <Input type="password" id="password_confirmation" name="password_confirmation" caption="Repeat your password" required onChange={ inputChangeHandler }  value={ registrationData.password_confirmation ?? '' }/>
             </div>
-            <Button> Register </Button>
+            <Button onClick={ () => props.registration(registrationData) }> Register </Button>
         </div>
     );
 }
 
-export default Register;
+export default connect( null, { registration })(Register)
