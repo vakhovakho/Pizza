@@ -4,7 +4,7 @@ import Input from '../UI/Form/Input/Input';
 import Button from '../UI/Form/Button/Button';
 import ContactDetails from '../../Core/Contracts/ContactDetails';
 import { connect } from 'react-redux';
-import { registration } from '../../redux/user/actions'; 
+import { registration } from '../../redux/user/actions';
 
 const Register = ( props: {registration: Function}) => {
 

@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import Input from '../UI/Form/Input/Input';
 import Button from '../UI/Form/Button/Button';
+import LoginDetails from '../../Core/Contracts/LoginDetails';
+import { connect } from 'react-redux';
+import { authorization } from '../../redux/user/actions';
 
-interface LoginDetails {
-    email: string, 
-    password: string
-}
-
-const Login = ( props: any) => {
+const Login = ( props: {authorization: Function} ) => {
     const initialLogindata: LoginDetails = {
         email: "",
         password: ""
@@ -31,9 +29,9 @@ const Login = ( props: any) => {
         <div className={ styles.Login }>
             <Input type="email" id="email" name="email" caption="Type E-mail" required onChange={ inputChangeHandler }  value={ loginData.email }/>
             <Input type="password" id="password" name="password" caption="Type password" required onChange={ inputChangeHandler }  value={ loginData.password }/>
-            <Button> Log In </Button>
+            <Button onClick={ () => props.authorization(loginData) }> Log In </Button>
         </div>
     );
 }
 
-export default Login;
+export default connect( null, { authorization })(Login);
