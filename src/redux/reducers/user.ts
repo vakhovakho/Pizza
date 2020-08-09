@@ -41,6 +41,12 @@ const watchUserState = (state: User) => {
                     number: string
                 } = jwt_decode(accessToken);
 
+                // changed.contactDetails.id = sub.id;
+                changed.contactDetails.email = sub.email;
+                changed.contactDetails.name = sub.name;
+                changed.contactDetails.address = sub.address;
+                changed.contactDetails.number = sub.number;
+
                 console.log(sub);
             }
         }
