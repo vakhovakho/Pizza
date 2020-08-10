@@ -3,6 +3,7 @@ import ReduxAction from "../Contracts/ReduxAction";
 import { UserActions } from "../actionTypes";
 import {LocalStorageKey} from "../enums/LocalStorageKey";
 import jwt_decode from 'jwt-decode';
+import ContactDetails from "../../Core/Contracts/ContactDetails";
 
 const initialState: User = {
     id: null,
@@ -33,21 +34,18 @@ const watchUserState = (state: User) => {
             changed.accessToken = accessToken;
             
             if(accessToken != null) {
-                const sub: {
-                    id: number,
-                    address: string,
-                    email: string,
-                    name: string,
-                    number: string
+                const data: {
+                    sub: ContactDetails
                 } = jwt_decode(accessToken);
 
-                // changed.contactDetails.id = sub.id;
-                changed.contactDetails.email = sub.email;
-                changed.contactDetails.name = sub.name;
-                changed.contactDetails.address = sub.address;
-                changed.contactDetails.number = sub.number;
+                changed.contactDetails = {...changed.contactDetails};
 
-                console.log(sub);
+                // changed.contactDetails.id = sub.id;
+                changed.contactDetails.email = data.sub.email;
+                changed.contactDetails.name = data.sub.name;
+                changed.contactDetails.address = data.sub.address;
+                changed.contactDetails.number = data.sub.number;
+
             }
         }
 
@@ -71,6 +69,14 @@ const updateGuestToken = (state: User, guestToken: string) => {
     return state;
 }
 
+const logout = (state: User): User => {
+    localStorage.removeItem(LocalStorageKey.ACCESS_TOKEN);
+    return {
+        ...state,
+        accessToken: null
+    }
+}
+
 export default function(state: User = initialState, action: ReduxAction): User {
     switch(action.type) {
         case UserActions.LOGIN:
@@ -79,6 +85,8 @@ export default function(state: User = initialState, action: ReduxAction): User {
             return watchUserState(state);
         case UserActions.UPDATE_GUEST_TOKEN:
             return updateGuestToken(state, action.payload.token);
+        case UserActions.LOGOUT:
+            return logout(state);
         default:
             return state;
     }

@@ -128,3 +128,11 @@
     color: gold;
     font-size: 16px;
 }
+
+.UserName {
+    cursor: default !important;
+}
+
+.Logout {
+    color: blue !important;
+}

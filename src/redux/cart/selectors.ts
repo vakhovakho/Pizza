@@ -1,4 +1,4 @@
-import CartHeader from "../../Core/Contracts/CartHeader";
+import CartHeader from "../../Core/Contracts/Cart";
 import IStore from "../Contracts/IStore";
 
 export const getCartData = (store: IStore): CartHeader  => {

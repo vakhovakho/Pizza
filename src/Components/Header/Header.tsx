@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import Modal from '../UI/Modal/Modal';
@@ -7,10 +7,30 @@ import Login from '../Login/Login';
 import { connect } from "react-redux";
 import { getCartData } from "../../redux/cart/selectors";
 import IStore from '../../redux/Contracts/IStore';
+import { getUserData } from '../../redux/user/selectors';
+import Cart from '../../Core/Contracts/Cart';
+import { User } from '../../Core/Contracts/User';
+import { logout } from '../../redux/user/actions';
 
-const Header = (props: any) => {
+const Header = (props: {cart: Cart, user: User, logout: Function}) => {
     const  [registrationMode, setRegisrationMode] = useState(false);
     const  [loginMode, setLoginMode] = useState(false);
+
+    let registrationButton = <button onClick={() => setRegisrationMode(true)}>Registration</button>;
+    let loginButton = <button onClick={() => setLoginMode(true)}>Allready have an account</button>;
+
+    if(props.user.accessToken !== null) {
+        registrationButton = <button className={ styles.UserName }>Hi, {props.user.contactDetails.name}</button>;
+        loginButton = <button className={ styles.Logout } onClick={() => props.logout()} >logout</button>;
+    } 
+
+    useEffect(() => {
+        if(props.user.accessToken !== null) {
+            setRegisrationMode(false);
+            setLoginMode(false);
+        }
+    }, [props.user.accessToken]);
+
     
     return (
         <div className={ styles.Header }>
@@ -46,8 +66,8 @@ const Header = (props: any) => {
                 </div>
                 <div className={ styles.Orders }>
                     <div className={ styles.Registration }>
-                        <button onClick={() => setRegisrationMode(true)}>Registration</button>
-                        <button onClick={() => setLoginMode(true)}>Allready have an account</button>
+                        { registrationButton }
+                        { loginButton }
                     </div>
                 </div>
                 <div className={ styles.Cart}>
@@ -64,4 +84,4 @@ const Header = (props: any) => {
     );
 }
 
-export default connect(state => ({ cart: getCartData(state as IStore ) }))(Header);
+export default connect(state => ({ cart: getCartData(state as IStore ), user: getUserData(state as IStore ) }), {logout})(Header);

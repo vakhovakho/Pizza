@@ -45,6 +45,11 @@ export const login = (token: string): ReduxAction => ({
     }
 });
 
+export const logout = (): ReduxAction => ({
+    type: UserActions.LOGOUT,
+    payload: {}
+});
+
 export const watchUserState = (): ReduxAction => ({
     type: UserActions.WATCH,
     payload: {}

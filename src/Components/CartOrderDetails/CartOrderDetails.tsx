@@ -33,7 +33,8 @@ const CartOrderDetails = (props: {total: number, show: boolean, backToCartClicke
                         name="comment" 
                         onChange={(event) => props.inputChanged(event)}
                         rows={4} 
-                        cols={50}>{ props.contactDetails.comment }</textarea>
+                        cols={50}
+                        value={ props.contactDetails.comment }></textarea>
                 </div>
             </div>
             <div className={ styles.CartOrderDetailsBottom}>

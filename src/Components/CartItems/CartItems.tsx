@@ -2,10 +2,10 @@ import React from 'react';
 import CartItem from './CartItem/CartItem';
 import CartSummary from './CartSummary/CartSummary';
 import styles from './CartItems.module.css';
-import Product from '../../Core/Contracts/Product';
+import { CartItem as CartItemContract } from '../../Core/Contracts/Cart';
 
 interface IProps {
-    products: Array<Product>, 
+    items: Array<CartItemContract>, 
     changeCount: Function, 
     total: number, 
     confirmClick: Function, 
@@ -14,10 +14,10 @@ interface IProps {
 };
 
 const CartItems = (props: IProps) => {
-    const products = props.products.map( product => {
+    const products = props.items.map( item => {
         return <CartItem 
-                product={ product } 
-                key={ product.id } 
+                item={ item } 
+                key={ item.product.id } 
                 changeCountClicked={ props.changeCount }
                 orderConfirmed={ props.orderConfirmed }
                 deleteClicked={ props.deleteClick }

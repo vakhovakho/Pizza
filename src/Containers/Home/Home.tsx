@@ -23,7 +23,6 @@ class Home extends Component {
     }
 
     componentDidMount () {
-        console.log("did mount");
         axios.get('/products')
             .then( (response: AxiosResponse) => {
                 const data: Array<Product> = response.data;
@@ -32,7 +31,6 @@ class Home extends Component {
                     return prod;
                 });
                 
-                console.log(products);
                 this.setState({ products });
             })
     }
@@ -49,7 +47,6 @@ class Home extends Component {
 
     render() {
         let content = null;
-        console.log(this.state);
 
         if(this.state.products.length) {
             content = (

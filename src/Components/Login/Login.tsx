@@ -24,13 +24,18 @@ const Login = ( props: {authorization: Function} ) => {
         }
         
     }
+
+    const submit = (e: React.FormEvent) => {
+        e.preventDefault();
+        props.authorization(loginData);
+    }
     
     return (
-        <div className={ styles.Login }>
-            <Input type="email" id="email" name="email" caption="Type E-mail" required onChange={ inputChangeHandler }  value={ loginData.email }/>
-            <Input type="password" id="password" name="password" caption="Type password" required onChange={ inputChangeHandler }  value={ loginData.password }/>
-            <Button onClick={ () => props.authorization(loginData) }> Log In </Button>
-        </div>
+        <form className={ styles.Login } onSubmit={ submit }>
+            <Input type="email" id="email1" name="email" caption="Type E-mail" required onChange={ inputChangeHandler }  value={ loginData.email }/>
+            <Input type="password" id="password1" name="password" caption="Type password" required onChange={ inputChangeHandler }  value={ loginData.password }/>
+            <Button> Log In </Button>
+        </form>
     );
 }
 

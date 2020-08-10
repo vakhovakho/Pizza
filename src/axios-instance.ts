@@ -16,8 +16,6 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
         config.headers['Guest-Token'] = store.getState().user.guestToken;
     }
 
-    console.log(store.getState().user.guestToken);
-
     return config;
 });
 

@@ -2,9 +2,9 @@ export default interface Product {
     id: number,
     image: string,
     alt: string,
-    title: string,
+    name: string,
     description: string,
     selectedSize: string,
     prices: {[key: string]: number},
-    count?: number
+    amount?: number
 }

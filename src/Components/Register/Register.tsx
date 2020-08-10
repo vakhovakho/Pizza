@@ -30,9 +30,14 @@ const Register = ( props: {registration: Function}) => {
         
     }
 
+    const submit = (e: React.FormEvent) => {
+        e.preventDefault();
+        props.registration(registrationData);
+    }
+
 
     return (
-        <div className={ styles.Register }>
+        <form className={ styles.Register } onSubmit={ submit }>
             <div className={ styles.RegisterContact }>
                 <h2>Contact information</h2>
                 <Input type="text" id="name" name="name" caption="Full Name" required onChange={ inputChangeHandler }  value={ registrationData.name } />
@@ -45,8 +50,8 @@ const Register = ( props: {registration: Function}) => {
                 <Input type="password" id="password" name="password" caption="Type your password" required onChange={ inputChangeHandler }  value={ registrationData.password ?? '' }/>
                 <Input type="password" id="password_confirmation" name="password_confirmation" caption="Repeat your password" required onChange={ inputChangeHandler }  value={ registrationData.password_confirmation ?? '' }/>
             </div>
-            <Button onClick={ () => props.registration(registrationData) }> Register </Button>
-        </div>
+            <Button> Register </Button>
+        </form>
     );
 }
 

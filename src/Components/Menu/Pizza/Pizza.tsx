@@ -23,7 +23,7 @@ const Pizza = (props: {product: Product, sizeSelected: Function, addProduct?: Fu
         <div className={ styles.Pizza }> 
             <img src={ props.product.image } alt="pizza pic" />
             <div className={ styles.ProductName }>
-                <p>{ props.product.title }</p>
+                <p>{ props.product.name }</p>
             </div>
             <div className={ styles.ProductDescription }>
                 <p>{ props.product.description }</p>
