@@ -9,7 +9,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config: AxiosRequestConfig) => {
     if(store.getState().user.accessToken) {
-        config.headers['Access-Token'] = store.getState().user.accessToken;
+        config.headers['Authorization'] = 'JWT ' + store.getState().user.accessToken;
     }
 
     if(store.getState().user.guestToken) {
