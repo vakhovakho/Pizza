@@ -6,21 +6,17 @@ import { CartItem as CartItemContract } from '../../Core/Contracts/Cart';
 
 interface IProps {
     items: Array<CartItemContract>, 
-    changeCount: Function, 
     total: number, 
     confirmClick: Function, 
-    orderConfirmed: boolean,
-    deleteClick: Function
+    orderConfirmed: boolean
 };
 
 const CartItems = (props: IProps) => {
     const products = props.items.map( item => {
         return <CartItem 
                 item={ item } 
-                key={ item.product.id } 
-                changeCountClicked={ props.changeCount }
+                key={ item.product.id + item.selectedSize } 
                 orderConfirmed={ props.orderConfirmed }
-                deleteClicked={ props.deleteClick }
             />
     });
 

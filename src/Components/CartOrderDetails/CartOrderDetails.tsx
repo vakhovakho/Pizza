@@ -11,19 +11,19 @@ const CartOrderDetails = (props: {total: number, show: boolean, backToCartClicke
             <div className={ styles.CartOrderDetailsTop}>
                 <div className={ styles.OrderDetailsName}>
                     <h2>Contact details</h2>
-                    <Input type="text" id="name" name="name" caption="Full Name" value={ props.contactDetails.name } required onChange={ props.inputChanged }/>
+                    <Input type="text" id="order-details-name" name="name" caption="Full Name" value={ props.contactDetails.name } required onChange={ props.inputChanged }/>
                 </div>
                 <div className={ styles.OrderDetailsNumber}>
-                    <Input type="text" id="number" name="number" caption="Phone number" value={ props.contactDetails.number } required onChange={ props.inputChanged }/>
+                    <Input type="text" id="order-details-number" name="number" caption="Phone number" value={ props.contactDetails.number } required onChange={ props.inputChanged }/>
                 </div>
                 <div className={ styles.OrderDetailsEmail}>
-                    <Input type="text" id="email" name="email" caption="E-mail" value={ props.contactDetails.email } required onChange={ props.inputChanged }/>
+                    <Input type="text" id="order-details-email" name="email" caption="E-mail" value={ props.contactDetails.email } required onChange={ props.inputChanged }/>
                 </div>
             </div>
             <div className={ styles.CartOrderDetailsMiddle}>
                 <div className={ styles.OrderDetailsAddress}>
                     <h2>Order address</h2>
-                    <Input type="text" id="address" name="address" caption="Street Name" value={ props.contactDetails.address } required onChange={ props.inputChanged } />
+                    <Input type="text" id="order-details-address" name="address" caption="Street Name" value={ props.contactDetails.address } required onChange={ props.inputChanged } />
                 </div>
                 <div  className={ styles.OrderDetailsComment}>
                     <p>Comment</p>

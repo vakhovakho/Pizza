@@ -8,7 +8,6 @@ import styles from './Cart.module.css';
 
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addProduct, removeProduct, substractProduct } from '../../redux/cart/actions';
 import { getCartData } from '../../redux/cart/selectors';
 import { getUserData } from '../../redux/user/selectors';
 
@@ -22,9 +21,6 @@ interface IState {
 };
 
 interface IProps {
-    addProduct?: Function,
-    removeProduct?: Function,
-    substractProduct?: Function,
     cart: CartContract
     contactDetails: ContactDetails
 }
@@ -83,10 +79,8 @@ class Cart extends Component<IProps> {
                 <CartItems 
                     items={ this.props.cart.items }
                     orderConfirmed={ this.state.orderConfirmed }
-                    changeCount={ this.changeCountHandler }
                     total = { this.props.cart.total }
                     confirmClick = { this.confirmClickHandler }
-                    deleteClick = { this.deleteHandler }
                 />
             );
         }
@@ -115,4 +109,4 @@ function mapStateToProps(state: IStore) {
     return { cart, contactDetails }
   }
 
-export default connect( mapStateToProps, { addProduct, substractProduct, removeProduct })(Cart)
+export default connect( mapStateToProps)(Cart)

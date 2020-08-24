@@ -1,8 +1,18 @@
 import React from 'react';
 import styles from './CartItem.module.css';
 import { CartItem as CartItemContract } from '../../../Core/Contracts/Cart';
+import { connect } from 'react-redux';
+import { addProduct, removeProduct, substractProduct } from '../../../redux/cart/actions';
 
-const CartItem = (props: {item: CartItemContract, changeCountClicked: Function, orderConfirmed: boolean, deleteClicked: Function}) => {
+interface IProps {
+    item: CartItemContract, 
+    orderConfirmed: boolean,
+    addProduct: Function,
+    removeProduct: Function,
+    substractProduct: Function
+}
+
+const CartItem = (props: IProps) => {
     const countFinalPrice = () => {
         const amount = props.item.amount;
         const selectedSize = props.item.selectedSize;
@@ -25,13 +35,13 @@ const CartItem = (props: {item: CartItemContract, changeCountClicked: Function, 
                 <div className={ styles.PizzaQuantity }>
                     <button 
                         type="button" 
-                        onClick={ () => props.changeCountClicked(props.item.product.id, false) }
+                        onClick={ () => props.substractProduct(props.item) }
                         className={ props.orderConfirmed ? styles.Disabled : '' }
                     >-</button>
                     <input type="text"  value={ props.item.amount } disabled required/>
                     <button 
                         type="button" 
-                        onClick={ () => props.changeCountClicked(props.item.product.id, true) }
+                        onClick={ () => props.addProduct(null, props.item) }
                         className={ props.orderConfirmed ? styles.Disabled : '' }
                     >+</button>
                 </div>
@@ -41,7 +51,7 @@ const CartItem = (props: {item: CartItemContract, changeCountClicked: Function, 
                     <p>{ countFinalPrice() }$</p>
                     <button 
                         className={ props.orderConfirmed ? styles.Disabled : '' }  
-                        onClick={ () => props.deleteClicked(props.item.product) }
+                        onClick={ () => props.removeProduct(props.item) }
                         type="button">X
                     </button>
                 </div>
@@ -50,5 +60,4 @@ const CartItem = (props: {item: CartItemContract, changeCountClicked: Function, 
     );
 }
 
-
-export default CartItem;
+export default connect( null, { addProduct, substractProduct, removeProduct })(CartItem);
