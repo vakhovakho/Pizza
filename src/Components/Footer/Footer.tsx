@@ -31,8 +31,8 @@ const Footer = () => {
             </div>
         </div>
         <div className={ styles.CompanyLocation }>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.6513093155813!2d-0.15692435226592852!3d51.51961285135955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ace9a2e67d7%3A0xd458de8d0fdc498e!2zQmFrZXIgU3QsIE1hcnlsZWJvbmUsIExvbmRvbiwg0JLQtdC70LjQutC-0LHRgNC40YLQsNC90LjRjw!5e0!3m2!1sru!2sge!4v1594475776951!5m2!1sru!2sge"
-         width="400" height="250"  style={{border:0}} aria-hidden="false" title="Address Map"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.6513093155813!2d-0.15692435226592852!3d51.51961285135955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ace9a2e67d7%3A0xd458de8d0fdc498e!2zQmFrZXIgU3QsIE1hcnlsZWJvbmUsIExvbmRvbiwg0JLQtdC70LjQutC-0LHRgNC40YLQsNC90LjRjw!5e0!3m2!1sru!2sge!4v1594475776951!5m2!1sru!2sge"
+            style={{border:0}} aria-hidden="false" title="Address Map"></iframe>
         </div>
     </div>
     );

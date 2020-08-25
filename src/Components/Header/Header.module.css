@@ -136,3 +136,12 @@
 .Logout {
     color: blue !important;
 }
+
+@media screen and (max-width: 1200px) {
+    .Address {
+        margin: 0 15px;
+    }
+    .Registration {
+        text-align: center;
+    }
+}

@@ -85,3 +85,25 @@
 .Disabled {
     cursor: not-allowed;
 }
+
+@media screen and (max-width: 1200px) {
+    .PizzaPrice p {
+        margin-right: 130px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .PizzaPrice p {
+        margin-right: 100px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .PizzaPrice p {
+        margin-right: 35px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    
+}

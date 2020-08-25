@@ -6,8 +6,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    height: 300px;
     align-items: center;
+    padding: 30px 0;
+}
+
+.Footer>div {
+    margin: 0 15px;
 }
 
 .Company img {
@@ -96,3 +100,33 @@
     width: 60px;
     vertical-align: super;
 }
+
+.CompanyLocation iframe{
+    border: 0px;
+    width: 400px;
+    height: 250px;
+}
+
+@media screen and (max-width: 600px) {
+    .Footer {
+        display: block;
+        text-align: center;
+    }
+
+    .Company img {
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .CompanyRights{
+        display: none;
+    }
+
+    .SocialNetwork {
+        margin: 0 auto;
+    }
+    .CompanyLocation {
+        display: none;
+    }
+}
+
