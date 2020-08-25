@@ -10,6 +10,10 @@ const MyOrderDetails = ( props: any) => {
                     <p>7/15/20</p>
                 </div>
                 <div className={ styles.OrderPizzas }>
+                    <div className={ styles.OrderTimeMobile }>
+                        <p>#0001</p>
+                        <p>7/15/20</p>
+                    </div>
                     <ul>
                         <li>
                             <p>Pizza "Peperoni" size: 25sm <span>(1*100$)</span></p>
@@ -24,6 +28,10 @@ const MyOrderDetails = ( props: any) => {
                             <p>Pizza "Margarita" size: 35sm <span>(4*100$)</span></p>
                         </li>
                     </ul>
+                    <div className={ styles.OrderPriceMobile }>
+                        <p>Price of order</p>
+                        <p>1000$</p>
+                    </div>
                 </div>
                 <div className={ styles.OrderPrice }>
                     <p>Price of order</p>

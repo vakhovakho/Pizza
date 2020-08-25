@@ -67,4 +67,49 @@
     font-size: 19px;
 }
 
+.OrderTimeMobile, .OrderPriceMobile {
+    display: none;
+}
 
+.OrderTimeMobile p:first-child{
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.OrderTimeMobile p:last-child {
+    color: grey;
+}
+
+.OrderPriceMobile p:first-child{
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.OrderPriceMobile p:last-child {
+    color: grey;
+}
+
+@media screen and (max-width: 900px) {
+    .OrderDetails {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .OrderTime {
+        display: none;
+    }
+    .OrderPrice {
+        display: none;
+    }
+    .OrderTimeMobile {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+    .OrderPriceMobile {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+}

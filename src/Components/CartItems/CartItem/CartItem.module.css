@@ -45,6 +45,13 @@
     color: black;
 }
 
+.CartItemQuantityWrapper {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .PizzaQuantity {
     display: inline-block;
 }
@@ -95,15 +102,41 @@
 @media screen and (max-width: 1024px) {
     .PizzaPrice p {
         margin-right: 100px;
+        font-size: 27px;
     }
 }
 
 @media screen and (max-width: 900px) {
     .PizzaPrice p {
-        margin-right: 35px;
+        margin-right: 30px;
+        font-size: 24px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    
+    .PizzaPrice p {
+        font-size: 21px;
+    }
+    .CartItemQuantityWrapper {
+        display: flex;
+        width: 40%;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-direction: column-reverse;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .PizzaPrice {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .CartItemLeft {
+        width: 275px;
+    }
 }
