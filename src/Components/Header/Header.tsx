@@ -18,10 +18,18 @@ const Header = (props: {cart: Cart, user: User, logout: Function}) => {
 
     let registrationButton = <button onClick={() => setRegisrationMode(true)}>Registration</button>;
     let loginButton = <button onClick={() => setLoginMode(true)}>Allready have an account</button>;
+    let myOrdersButton = null;
 
     if(props.user.accessToken !== null) {
         registrationButton = <button className={ styles.UserName }>Hi, {props.user.contactDetails.name}</button>;
         loginButton = <button className={ styles.Logout } onClick={() => props.logout()} >logout</button>;
+        myOrdersButton = (
+            <div className={ styles.MyOrdersButton }>
+                <Link to="/my-orders">
+                    <button>my orders</button>
+                </Link>
+            </div>
+        )
     } 
 
     useEffect(() => {
@@ -67,6 +75,7 @@ const Header = (props: {cart: Cart, user: User, logout: Function}) => {
                 <div className={ styles.Orders }>
                     <div className={ styles.Registration }>
                         { registrationButton }
+                        { myOrdersButton }
                         { loginButton }
                     </div>
                 </div>

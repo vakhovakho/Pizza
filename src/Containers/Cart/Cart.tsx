@@ -36,6 +36,10 @@ class Cart extends Component<IProps> {
         orderPlaced: false
     };
 
+    componentDidUpdate() {
+        window.scrollTo(0, 0);
+    }
+
     placeOrder = () => {
         axios.post('/orders/create', {
             ...this.props.contactDetails

@@ -103,6 +103,22 @@
     font-size: 16px;
 }
 
+.Orders .MyOrdersButton {
+    display: inline-block;
+}
+
+.Orders .MyOrdersButton a {
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.Orders .MyOrdersButton button {
+    color: blue;
+    /* font-weight: normal; */
+}
+
 .CartIcon {
     margin-right: 20px;
 }
