@@ -22,10 +22,6 @@
     border-top-left-radius: 25px;
 }
 
-.Active {
-    background-color: grey;
-}
-
 .OrderButtons button:last-child {
     color: white;
     background-color: #fe8b0d;
@@ -33,6 +29,10 @@
     border: none;
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
+}
+
+.OrderButtons button.Active {
+    background-color: #999;
 }
 
 .MyOrderDetailsList {
