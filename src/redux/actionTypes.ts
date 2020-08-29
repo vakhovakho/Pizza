@@ -10,7 +10,8 @@ export enum UserActions {
     LOGIN = "LOGIN",
     WATCH = "WATCH",
     UPDATE_GUEST_TOKEN = "UPDATE_GUEST_TOKEN",
-    LOGOUT = "LOGOUT"
+    LOGOUT = "LOGOUT",
+    UPDATE_CONTACT_DETAILS = "UPDATE_CONTACT_DETAILS"
 }
 
 export enum FetchActions {

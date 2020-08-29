@@ -4,9 +4,19 @@ import Input from '../UI/Form/Input/Input';
 import Button from '../UI/Form/Button/Button';
 import ContactDetails from '../../Core/Contracts/ContactDetails';
 
-const CartOrderDetails = (props: {total: number, show: boolean, backToCartClicked: Function, inputChanged: Function, contactDetails: ContactDetails}) => {
+interface IProps {
+    total: number, 
+    orderConfirmed: boolean, 
+    orderPlaced: boolean, 
+    backToCartClicked: Function, 
+    inputChanged: Function, 
+    placeOrderClicked: Function, 
+    contactDetails: ContactDetails
+}
+
+const CartOrderDetails = (props: IProps) => {
     return (
-        <div className={ [styles.CartOrderDetails, props.show ? styles.Show : ''].join(" ") }>
+        <div className={ [styles.CartOrderDetails, (!props.orderPlaced && props.orderConfirmed) ? styles.Show : ''].join(" ") }>
             
             <div className={ styles.CartOrderDetailsTop}>
                 <div className={ styles.OrderDetailsName}>
@@ -44,7 +54,7 @@ const CartOrderDetails = (props: {total: number, show: boolean, backToCartClicke
                 </div>
                 <div className={ styles.OrderDetailsDeal}>
                     <Button onClick={() => props.backToCartClicked()}>Back to cart</Button>
-                    <Button>Make a deal</Button>
+                    <Button onClick={() => props.placeOrderClicked()}>Make a deal</Button>
                 </div>
             </div>
         

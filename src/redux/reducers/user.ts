@@ -20,6 +20,7 @@ const initialState: User = {
 
 const login = (state: User, token: string): User => {
     localStorage.setItem(LocalStorageKey.ACCESS_TOKEN, token);
+    localStorage.removeItem(LocalStorageKey.CART_HASH);
     
     return watchUserState(state);
 }
@@ -57,7 +58,14 @@ const watchUserState = (state: User) => {
     return state;
 }
 
-const updateGuestToken = (state: User, guestToken: string) => {
+const updateContactDetails = (state: User, contactDetails: ContactDetails): User => {
+    return {
+        ...state,
+        contactDetails: {...contactDetails}
+    }
+}
+
+const updateGuestToken = (state: User, guestToken: string): User => {
     if(state.guestToken !== guestToken) {
         localStorage.setItem(LocalStorageKey.GUEST_TOKEN, guestToken);
         return {
@@ -71,6 +79,7 @@ const updateGuestToken = (state: User, guestToken: string) => {
 
 const logout = (state: User): User => {
     localStorage.removeItem(LocalStorageKey.ACCESS_TOKEN);
+    localStorage.removeItem(LocalStorageKey.CART_HASH);
     return {
         ...state,
         accessToken: null
@@ -87,6 +96,8 @@ export default function(state: User = initialState, action: ReduxAction): User {
             return updateGuestToken(state, action.payload.token);
         case UserActions.LOGOUT:
             return logout(state);
+        case UserActions.UPDATE_CONTACT_DETAILS:
+            return updateContactDetails(state, action.payload.contactDetails);
         default:
             return state;
     }

@@ -10,32 +10,39 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCartData } from '../../redux/cart/selectors';
 import { getUserData } from '../../redux/user/selectors';
+import { updateContactDetails } from '../../redux/user/actions';
 
-import Product from '../../Core/Contracts/Product';
 import ContactDetails from '../../Core/Contracts/ContactDetails';
 import CartContract from '../../Core/Contracts/Cart';
 import IStore from '../../redux/Contracts/IStore';
 
+import axios from '../../axios-instance';
+import { LocalStorageKey } from '../../redux/enums/LocalStorageKey';
+
 interface IState {
-    orderConfirmed: boolean
+    orderConfirmed: boolean,
+    orderPlaced: boolean
 };
 
 interface IProps {
     cart: CartContract
-    contactDetails: ContactDetails
+    contactDetails: ContactDetails,
+    updateContactDetails: Function
 }
 
 class Cart extends Component<IProps> {
     state: IState = {
         orderConfirmed: false,
+        orderPlaced: false
     };
 
-    changeCountHandler = (id: number, increase: boolean) => {
-      
-    }
-
-    deleteHandler = (product: Product) => {
-        
+    placeOrder = () => {
+        axios.post('/orders/create', {
+            ...this.props.contactDetails
+        }).then(response => {
+            localStorage.removeItem(LocalStorageKey.CART_HASH);
+            this.setState({orderPlaced: true, orderConfirmed: false});
+        });
     }
 
     confirmClickHandler = () => {
@@ -58,7 +65,7 @@ class Cart extends Component<IProps> {
         if(name in contactDetails) {
             contactDetails[name] = event.target.value;
 
-            this.setState({ contactDetails });
+            this.props.updateContactDetails(contactDetails);
         }
         
     }
@@ -66,15 +73,15 @@ class Cart extends Component<IProps> {
     render() {
         let cartItems = (
             <div className={ styles.EmptyCart }>
-                <h3>Cart Is Empty</h3>
-                <Link to="/">
-                    <Button>Back To Home</Button>
+                <h3>{this.state.orderPlaced ? "Your order is Placed" : "Cart Is Empty"}</h3>
+                <Link to={ this.state.orderPlaced ? "/my-orders" : "/"}>
+                    <Button>{this.state.orderPlaced ? "Go to My Orders" :"Back To Home"}</Button>
                 </Link>
                 
             </div>
         );
         
-        if(this.props.cart.items.length) {
+        if(this.props.cart.items.length && !this.state.orderPlaced) {
             cartItems = (
                 <CartItems 
                     items={ this.props.cart.items }
@@ -91,10 +98,12 @@ class Cart extends Component<IProps> {
                     { cartItems }
                     <CartOrderDetails 
                         total={ this.props.cart.total } 
-                        show={ this.state.orderConfirmed } 
+                        orderConfirmed={ this.state.orderConfirmed } 
+                        orderPlaced={ this.state.orderPlaced } 
                         backToCartClicked={ this.backToCartHandler }
                         inputChanged={ this.inputChangeHandler }
                         contactDetails={ this.props.contactDetails }
+                        placeOrderClicked={ this.placeOrder }
                     />
                 </div>
                 <Footer />
@@ -109,4 +118,4 @@ function mapStateToProps(state: IStore) {
     return { cart, contactDetails }
   }
 
-export default connect( mapStateToProps)(Cart)
+export default connect( mapStateToProps, {updateContactDetails} )(Cart)

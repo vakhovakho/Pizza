@@ -61,3 +61,10 @@ export const updateGuestToken = (token: string): ReduxAction => ({
         token
     }
 })
+
+export const updateContactDetails = (contactDetails: ContactDetails): ReduxAction => ({
+    type: UserActions.UPDATE_CONTACT_DETAILS,
+    payload: {
+        contactDetails
+    }
+})
