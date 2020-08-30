@@ -38,3 +38,8 @@
 .MyOrderDetailsList {
     margin-top: 50px;
 }
+
+.NoOrders {
+    text-align: center;
+    font-size: 24px;
+}

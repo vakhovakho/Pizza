@@ -46,9 +46,9 @@ const Register = ( props: {registration: Function}) => {
             </div>
             <div className={ styles.RegisterLogin }>
                 <h2>Login information</h2>
-                <Input type="email" id="email" name="email" caption="E-mail" required onChange={ inputChangeHandler }  value={ registrationData.email }/>
-                <Input type="password" id="password" name="password" caption="Type your password" required onChange={ inputChangeHandler }  value={ registrationData.password ?? '' }/>
-                <Input type="password" id="password_confirmation" name="password_confirmation" caption="Repeat your password" required onChange={ inputChangeHandler }  value={ registrationData.password_confirmation ?? '' }/>
+                <Input autocomplete="off" type="email" id="email" name="email" caption="E-mail" required onChange={ inputChangeHandler }  value={ registrationData.email }/>
+                <Input autocomplete="off" type="password" id="password" name="password" caption="Type your password" required onChange={ inputChangeHandler }  value={ registrationData.password ?? '' }/>
+                <Input autocomplete="off" type="password" id="password_confirmation" name="password_confirmation" caption="Repeat your password" required onChange={ inputChangeHandler }  value={ registrationData.password_confirmation ?? '' }/>
             </div>
             <Button> Register </Button>
         </form>

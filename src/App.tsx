@@ -7,17 +7,7 @@ import './App.css';
 import MyOrders from './Containers/MyOrders/MyOrders';
 import Header from './Components/Header/Header';
 
-function App() {
-  const [loaded, setLoaded] = useState(false);
-
-  requestAnimationFrame( () => {
-    setLoaded(true);
-  })
-
-  if(!loaded) {
-    return null;
-  }
-  
+function App() {  
   return (
       <Wrapper>
         <Header />

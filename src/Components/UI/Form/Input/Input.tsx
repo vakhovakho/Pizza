@@ -8,7 +8,8 @@ interface IProps {
     value: string | number,
     type: string,
     required?: boolean,
-    onChange?: Function 
+    onChange?: Function,
+    autocomplete?: string
 }
 
 const Input = (props:  IProps) => {
@@ -22,6 +23,7 @@ const Input = (props:  IProps) => {
                 value={ props.value } 
                 required={ props.required ? true: false }
                 onChange={ (event) => props.onChange ? props.onChange(event) : null } 
+                autoComplete={ props.autocomplete ?? "" }
             />
         </div>
     );

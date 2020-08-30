@@ -31,9 +31,12 @@ export const authorization = (credentials: LoginDetails) => {
         .then((response: AxiosResponse<{token: string}>) => {
             dispatch(login(response.data.token));
             dispatch(FetchActions.finish());
+            return "success";
         })
         .catch(error => {
             dispatch(FetchActions.finish(error));
+            console.log(error.response);
+            return "error";
         })
     }
 }

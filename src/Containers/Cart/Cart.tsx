@@ -45,6 +45,8 @@ class Cart extends Component<IProps> {
             ...this.props.contactDetails
         }).then(response => {
             localStorage.removeItem(LocalStorageKey.CART_HASH);
+            const contactDetails: ContactDetails = {...this.props.contactDetails, comment: ""};
+            this.props.updateContactDetails(contactDetails);
             this.setState({orderPlaced: true, orderConfirmed: false});
         });
     }
