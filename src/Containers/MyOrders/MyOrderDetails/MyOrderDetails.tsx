@@ -21,7 +21,7 @@ const MyOrderDetails = ( props: {order: Order}) => {
                 </div>
                 <div className={ styles.OrderPizzas }>
                     <div className={ styles.OrderTimeMobile }>
-                        <p>{ props.order.id }</p>
+                        <p>#{ props.order.id }</p>
                         <p>{ props.order.date }</p>
                     </div>
                     <ul>
@@ -29,12 +29,12 @@ const MyOrderDetails = ( props: {order: Order}) => {
                     </ul>
                     <div className={ styles.OrderPriceMobile }>
                         <p>Price of order</p>
-                        <p>{ props.order.total }</p>
+                        <p>${ props.order.total }</p>
                     </div>
                 </div>
                 <div className={ styles.OrderPrice }>
                     <p>Price of order</p>
-                    <p>{ props.order.total }</p>
+                    <p>${ props.order.total }</p>
                 </div>
                 <Track/>
             </div>

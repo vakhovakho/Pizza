@@ -37,7 +37,9 @@ class Cart extends Component<IProps> {
     };
 
     componentDidUpdate() {
-        window.scrollTo(0, 0);
+        if(this.state.orderPlaced) {
+            window.scrollTo(0, 0);
+        }
     }
 
     placeOrder = () => {
