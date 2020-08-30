@@ -3,7 +3,7 @@ import { updateGuestToken } from './redux/user/actions';
 import store from './redux/store';
 
 const instance = axios.create({
-    baseURL: 'http://pizza-api.test/api/'
+    baseURL: process.env.API_URL || 'http://pizza-api.test/api/'
 });
 
 
