@@ -32,17 +32,17 @@ const Pizza = (props: {product: Product, sizeSelected: Function, addProduct?: Fu
                 <div 
                     className={ [styles.Size, props.product.selectedSize === "small" ? styles.Selected : ''].join(' ') } 
                     onClick={ () => props.sizeSelected(props.product.id, 'small') }>
-                    <p>25 sm</p>
+                    <p>25 cm</p>
                 </div>
                 <div 
                     className={ [styles.Size, props.product.selectedSize === "medium" ? styles.Selected : ''].join(' ') } 
                     onClick={ () => props.sizeSelected(props.product.id, 'medium') }>
-                    <p>35 sm</p>
+                    <p>35 cm</p>
                 </div>
                 <div 
                     className={ [styles.Size, props.product.selectedSize === "large" ? styles.Selected : ''].join(' ') } 
                     onClick={ () => props.sizeSelected(props.product.id, 'large') }>
-                    <p>45 sm</p>
+                    <p>45 cm</p>
                 </div>
             </div>
             <div className={ styles.ProductFooter }>
