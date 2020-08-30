@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Home from './Containers/Home/Home';
 import Cart from './Containers/Cart/Cart';
 import Wrapper from './Components/UI/Wrapper/Wrapper';
