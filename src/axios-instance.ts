@@ -3,7 +3,7 @@ import { updateGuestToken } from './redux/user/actions';
 import store from './redux/store';
 
 const instance = axios.create({
-    baseURL: 'http://api.pizza.vakho.space/api/'
+    baseURL: 'https://api.pizza.vakho.space/api/'
 });
 
 
